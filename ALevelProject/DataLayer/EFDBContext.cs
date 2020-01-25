@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer.Entityes;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -9,6 +10,9 @@ namespace DataLayer
 {
     public class EFDBContext : DbContext
     {
+        public DbSet<DicClient> DicClient { get; set; }
+        public DbSet<DicGood> DicGood { get; set; }
+        public DbSet<JorOrder> JorOrder { get; set; }
         public EFDBContext() : base("DefaultConnection") { }
     }
 }
