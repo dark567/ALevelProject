@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace DataLayer.Entityes
 {
+    [Table("DicGoods")]
     public class DicClient
     {
         [Key]
@@ -19,8 +21,5 @@ namespace DataLayer.Entityes
         public string Email { get; set; }
         public int Age { get; set; }
         public byte[] Photo { get; set; }
-
-        // Ссылка на заказы
-        //public virtual List<JorOrder> Orders { get; set; }
     }
 }
