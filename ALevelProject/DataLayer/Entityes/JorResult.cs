@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace DataLayer.Entityes
 {
-    [Table("JorOrders")]
-    public class JorOrder
+    [Table("JorResults")]
+    public class JorResult
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public Guid OrderId { get; set; }
+        public Guid ResultId { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "DateAdd")]
-        public DateTime DateAdd { get; set; }
+        [Display(Name = "DateDone")]
+        public DateTime DateDone { get; set; }
         public DicClient ClientId { get; set; }
         public DicGood GoodId { get; set; }
         public int Value { get; set; }

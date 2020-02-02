@@ -55,22 +55,13 @@
     <Compile Include="Entityes\DicClient.cs" />
     <Compile Include="Entityes\DicGood.cs" />
     <Compile Include="Entityes\JorOrder.cs" />
-    <Compile Include="Migrations\202001251528135_SecMigr.cs" />
-    <Compile Include="Migrations\202001251528135_SecMigr.designer.cs">
-      <DependentUpon>202001251528135_SecMigr.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Entityes\JorResult.cs" />
+    <Compile Include="LabDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SampleData.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001251528135_SecMigr.resx">
-      <DependentUpon>202001251528135_SecMigr.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
