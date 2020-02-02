@@ -23,10 +23,14 @@
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("Клиенты", "Index", "DicClients")</li>
                     <li>@Html.ActionLink("Услуги", "Index", "DicGoods")</li>
-                    <li>@Html.ActionLink("Клиенты", "Index", "DicClients")</li>
+                    <li>@Html.ActionLink("Заказы", "Index", "JorOrders")</li>
                     <li>@Html.ActionLink("Клиенты", "Index", "DicClients")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Регистрация", "Register", "Account")</li>
+                    }
                 </ul>
             </div>
         </div>
@@ -41,6 +45,8 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/datatables")
+    @Scripts.Render("~/bundles/datatables")
     @RenderSection("scripts", required: false)
 </body>
 </html>
