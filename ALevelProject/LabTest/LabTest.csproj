@@ -440,6 +440,7 @@
     <Content Include="Views\Test\Delete.cshtml" />
     <Content Include="Views\Test\Details.cshtml" />
     <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\DicClients\CreateModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

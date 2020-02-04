@@ -15,22 +15,25 @@ namespace DataLayer.Entityes
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid ClientId { get; set; }
         [Required]
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [StringLength(50, MinimumLength = 4, ErrorMessage = "The name cannot be longer than 50 characters and less than 4.")]
+        [Display(Name = "Имя")]
         public string Name { get; set; }
-        [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
+        [Required]
+        [StringLength(50, MinimumLength = 4, ErrorMessage = "The name cannot be longer than 50 characters and less than 4.")]
+        [Display(Name = "Фамилия")]
         public string Surname { get; set; }
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string Secname { get; set; }
-        [Range(0, 3)]
-        public int Gender { get; set; }
+        [Display(Name = "Пол")]
+        public string Gender { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
         [Range(0, 100)]
         public int Age { get; set; }
-
+        [Required]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        [Display(Name = "BirthDate")]
+        [Display(Name = "Дата рождения")]
         public DateTime BirthDate { get; set; }
         public byte[] Photo { get; set; } //todo ver2
     }

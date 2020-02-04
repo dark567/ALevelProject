@@ -34,7 +34,7 @@ namespace LabTest.Controllers
             ViewBag.CurrentFilter = searchString;
 
             IEnumerable<DicClient> clients = from s in db.DicClient
-                          select s;
+                                             select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 clients = clients.Where(s => s.Name.ToLower().Contains(searchString.ToLower())
@@ -79,7 +79,7 @@ namespace LabTest.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name, SurName, BirthDate")]DicClient client)
+        public ActionResult Create([Bind(Include = "Name, Surname, BirthDate")]DicClient client)
         {
             try
             {
@@ -97,6 +97,42 @@ namespace LabTest.Controllers
             }
             return View(client);
         }
+
+        public ActionResult CreateM()
+        {
+            //SelectList gender = new SelectList(db.DicClient, "Gender", "Name");
+            SelectList gender = new SelectList(new string[] { "n/a", "М", "Ж" });
+            ViewBag.gender = gender;
+
+            return PartialView("CreateModal");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateM(DicClient client)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DicClient.Add(client);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return PartialView("CreateModal", client);
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(client);
+        }
+
+
 
         // GET: DicClient/Details/5
         public ActionResult Details(Guid? id)

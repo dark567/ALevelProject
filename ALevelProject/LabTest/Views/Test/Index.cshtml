@@ -35,7 +35,7 @@
                                 <td>@asset.Secname</td>
                                 <td>@asset.Gender</td>
                                 <td>@asset.Age</td>
-                                <td>@asset.BirthDate</td>
+                                <td>@asset.BirthDate.ToString("dd.MM.yyyy")</td>
                                 <td>
                                     @Html.ActionLink("Edit", "Edit", new { id = @asset.ClientId }) |
                                     @Html.ActionLink("Details", "Details", new { id = @asset.ClientId }) |

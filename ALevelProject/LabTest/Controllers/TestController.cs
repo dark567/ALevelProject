@@ -11,7 +11,6 @@ namespace LabTest.Controllers
     {
         // создаем контекст данных
         EFDBContext db = new EFDBContext();
-
         // GET: Test
         public ActionResult Index()
         {
