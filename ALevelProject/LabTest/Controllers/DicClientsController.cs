@@ -149,6 +149,21 @@ namespace LabTest.Controllers
             return View(dicClient);
         }
 
+        // GET: DicClient/Details/5
+        public ActionResult DetailsModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DicClient dicClient = db.DicClient.Find(id);
+            if (dicClient == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(dicClient);
+        }
+
         // GET: DicClient/Edit/5
         public ActionResult Edit(Guid? id)
         {
@@ -192,6 +207,51 @@ namespace LabTest.Controllers
                 }
             }
             return View(clientToUpdate);
+        }
+
+        // GET: DicClient/Edit/5
+        public ActionResult EditModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            DicClient dicClient = db.DicClient.Find(id);
+            if (dicClient == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(dicClient);
+        }
+
+        // POST: DicClient/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("EditModal")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPostModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var clientToUpdate = db.DicClient.Find(id);
+            if (TryUpdateModel(clientToUpdate, "",
+               new string[] { "Name", "Surname", "BirthDate" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return PartialView(clientToUpdate);
         }
 
         // GET: DicClient/Delete/5

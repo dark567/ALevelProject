@@ -441,6 +441,8 @@
     <Content Include="Views\Test\Details.cshtml" />
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\DicClients\CreateModal.cshtml" />
+    <Content Include="Views\DicClients\DetailsModal.cshtml" />
+    <Content Include="Views\DicClients\EditModal.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
