@@ -12,7 +12,9 @@ namespace DataLayer
     {
         public DbSet<DicClient> DicClient { get; set; }
         public DbSet<DicGood> DicGood { get; set; }
+        public DbSet<Gender> Gender { get; set; }
         public DbSet<JorOrder> JorOrder { get; set; }
+
         public EFDBContext() : base("DefaultConnection") { }
     }
 }

@@ -100,9 +100,16 @@ namespace LabTest.Controllers
 
         public ActionResult CreateM()
         {
-            //SelectList gender = new SelectList(db.DicClient, "Gender", "Name");
-            SelectList gender = new SelectList(new string[] { "n/a", "М", "Ж" });
-            ViewBag.gender = gender;
+            SelectList gender = new SelectList(db.Gender, "GenderId", "Type");
+
+            ////List<Gender> genderList = new List<Gender> {
+            ////                                 new Gender{ Type="Male"},
+            ////                                 new Gender{ Type="Female"}
+            ////                                 };
+
+            //SelectList gender = new SelectList(new string[] { "n/a", "М", "Ж" });
+            ViewBag.GenderList = gender;
+
 
             return PartialView("CreateModal");
         }

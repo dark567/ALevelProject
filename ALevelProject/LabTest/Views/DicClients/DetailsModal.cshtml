@@ -1,4 +1,5 @@
-﻿@model DataLayer.Entityes.DicClient
+﻿@using DataLayer.Entityes
+@model DataLayer.Entityes.DicClient
 
 <div class="modal-header" style="background-color:lightblue">
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
@@ -26,10 +27,10 @@
             @Html.DisplayFor(model => model.Age)
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.Gender)
+            @Html.DisplayNameFor(model => model.GenderId)
         </dt>
         <dd>
-            @Html.DisplayFor(model => model.Gender)
+            @Html.DisplayFor(model => model.GenderId.Type)
         </dd>
         <dt>
             @Html.DisplayNameFor(model => model.Email)

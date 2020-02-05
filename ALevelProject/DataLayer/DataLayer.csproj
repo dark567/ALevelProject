@@ -15,6 +15,21 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +58,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -52,16 +69,82 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFDBContext.cs" />
+    <Compile Include="Entityes\bdDiagr.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdDiagr.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entityes\bdDiagr.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdDiagr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entityes\bdDiagr.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>bdDiagr.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Entityes\DicClient.cs" />
+    <Compile Include="Entityes\DicClients.cs">
+      <DependentUpon>bdDiagr.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entityes\DicGood.cs" />
+    <Compile Include="Entityes\DicGoods.cs">
+      <DependentUpon>bdDiagr.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entityes\Gender.cs" />
     <Compile Include="Entityes\JorOrder.cs" />
+    <Compile Include="Entityes\JorOrders.cs">
+      <DependentUpon>bdDiagr.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entityes\JorResult.cs" />
     <Compile Include="LabDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <EntityDeploy Include="Entityes\bdDiagr.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>bdDiagr.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entityes\bdDiagr.edmx.diagram">
+      <DependentUpon>bdDiagr.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ALevelProject.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="ALevelProject_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>ALevelProject.mdf</DependentUpon>
+    </Content>
+    <Content Include="Entityes\bdDiagr.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bdDiagr.edmx</DependentUpon>
+      <LastGenOutput>bdDiagr.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Entityes\bdDiagr.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>bdDiagr.edmx</DependentUpon>
+      <LastGenOutput>bdDiagr.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
