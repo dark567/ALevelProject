@@ -164,6 +164,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DicClientsController.cs" />
     <Compile Include="Controllers\DicGoodsController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JorOrdersController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
@@ -253,6 +254,8 @@
     <Content Include="Views\Test\Details.cshtml" />
     <Content Include="Views\Test\Edit.cshtml" />
     <Content Include="Views\Test\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
