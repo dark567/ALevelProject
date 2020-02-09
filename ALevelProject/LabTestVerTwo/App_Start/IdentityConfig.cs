@@ -11,6 +11,7 @@ namespace LabTestVerTwo.App_Start
         public void Configuration(IAppBuilder app)
         {
             app.CreatePerOwinContext<AppIdentityDbContext>(AppIdentityDbContext.Create);
+
             app.CreatePerOwinContext<AppUserManager>(AppUserManager.Create);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
@@ -18,6 +19,8 @@ namespace LabTestVerTwo.App_Start
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Account/Login"),
             });
+
+            app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create); //add RoleManager
         }
     }
 }

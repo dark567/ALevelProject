@@ -8,9 +8,20 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    @if (User.IsInRole("managers"))
+    {
+        @Html.Action("TopNav", "Navigation") 
+    }
 
-    @Html.Action("TopNav", "Navigation")     @*Navbar rendering*@
+    @if (User.IsInRole("laborants"))
+    {
+        @Html.Action("TopNav", "Navigation")
+    }
 
+    @if (User.IsInRole("admins"))
+    {
+        @Html.Action("TopNav", "Navigation") 
+    }
     <div class="container body-content">
         @RenderBody()
         <hr />
