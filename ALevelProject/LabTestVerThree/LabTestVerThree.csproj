@@ -163,9 +163,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DicClientsController.cs" />
+    <Compile Include="Controllers\DicGoodsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JorOrdersController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -193,6 +196,11 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Views\JorOrders\Create.cshtml" />
+    <Content Include="Views\JorOrders\Delete.cshtml" />
+    <Content Include="Views\JorOrders\Details.cshtml" />
+    <Content Include="Views\JorOrders\Edit.cshtml" />
+    <Content Include="Views\JorOrders\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -235,6 +243,16 @@
     <Content Include="Views\DicClients\Edit.cshtml" />
     <Content Include="Views\DicClients\EditModal.cshtml" />
     <Content Include="Views\DicClients\Index.cshtml" />
+    <Content Include="Views\DicGoods\Create.cshtml" />
+    <Content Include="Views\DicGoods\Delete.cshtml" />
+    <Content Include="Views\DicGoods\Details.cshtml" />
+    <Content Include="Views\DicGoods\Edit.cshtml" />
+    <Content Include="Views\DicGoods\Index.cshtml" />
+    <Content Include="Views\Test\Create.cshtml" />
+    <Content Include="Views\Test\Delete.cshtml" />
+    <Content Include="Views\Test\Details.cshtml" />
+    <Content Include="Views\Test\Edit.cshtml" />
+    <Content Include="Views\Test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

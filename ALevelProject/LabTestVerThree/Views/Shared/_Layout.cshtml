@@ -3,31 +3,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My Application</title>
+    <title>@ViewBag.Title - LabTest</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
 <body>
-    @*@if (User.IsInRole("managers"))
-        {
-            @Html.Action("TopNav", "Navigation")
-        }
+    @if (User.IsInRole("managers"))
+    {
+        @Html.Action("TopNav", "Navigation")
+    }
 
-        @if (User.IsInRole("laborants"))
-        {
-            @Html.Action("TopNav", "Navigation")
-        }
+    @if (User.IsInRole("laborants"))
+    {
+        @Html.Action("TopNav", "Navigation")
+    }
 
-        @if (User.IsInRole("admins"))
-        {*@
-    @Html.Action("TopNav", "Navigation")
-    @*}*@
+    @if (User.IsInRole("admins"))
+    {
+        @Html.Action("TopNav", "Navigation")
+    }
+
+    @*@if (!User.IsInRole("admins") || !User.IsInRole("laborants") || !User.IsInRole("managers"))
+    {
+        @Html.Action("TopNav", "Navigation")
+    }*@
     <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My Application</p>
+            <p>&copy; @DateTime.Now.Year - LabTest ver1.0</p>
         </footer>
     </div>
 
