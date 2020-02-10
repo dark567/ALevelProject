@@ -40,8 +40,7 @@
 
             <div class="form-group">
                 @Html.LabelFor(model => model.GenderId.Type, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @*@Html.DropDownListFor(model => model.GenderId, ViewBag.GenderList as SelectList)*@
+                <div class="col-md-10">  
                     @Html.DropDownList("ddldepartmentlist", ViewData["GenderList"] as IEnumerable<SelectListItem>)
                     @Html.ValidationMessageFor(model => model.GenderId.Type, "", new { @class = "text-danger" })
                 </div>
@@ -61,10 +60,7 @@
 
     <div class="modal-footer">
         <div class="col-md-offset-2 col-md-10">
-            @*<input type="submit" value="Create" class="btn btn-primary" />*@
-
             <button class="btn btn-primary" type="submit">Сохранить</button>
-            @*<button class="btn btn-primary" type="submit" value="Create">Сохранить</button>*@
             <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
         </div>
     </div>

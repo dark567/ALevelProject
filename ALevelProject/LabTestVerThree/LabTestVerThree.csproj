@@ -256,6 +256,8 @@
     <Content Include="Views\Test\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Error\Forbidden.cshtml" />
+    <Content Include="Views\JorOrders\Create_.cshtml" />
+    <Content Include="Views\JorOrders\ListClients_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

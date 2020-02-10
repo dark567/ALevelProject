@@ -1,0 +1,85 @@
+﻿@*@model DataLayer.Entityes.DicClient*@
+
+@model PagedList.IPagedList<DataLayer.Entityes.DicClient>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Выбор клиента</h3>
+</div>
+
+@*@using (Html.BeginForm("ListClients", "JorOrder", FormMethod.Post, new { @class = "modal-form" }))
+    {*@
+@using (Html.BeginForm("ListClients", "JorOrder", FormMethod.Get))
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<div class="modal-body">
+    <table class="table">
+        @*<tr>
+                <th>
+                    @Html.ActionLink("Name", "ListClients", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+
+
+                </th>
+                <th>
+                    SurName
+                </th>
+                <th>
+                    @Html.ActionLink("BirthDate", "ListClients", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+            </tr>*@
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BirthDate)
+                </td>
+                <td>
+                    @Html.ActionLink("Выбрать", "Create_", new { id = item.ClientId })
+                    <button class="btn btn-primary" type="submit">Выбрать</button>
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("ListClients",
+        new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+</div>
+
+<div class="modal-footer">
+    <div class="col-md-offset-2 col-md-10">
+        @*<input type="submit" value="Create" class="btn btn-primary" />*@
+
+        @*<button class="btn btn-primary" type="submit">Сохранить</button>*@
+        @*<button class="btn btn-primary" type="submit" value="Create">Сохранить</button>*@
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+    </div>
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@*<div class="modal-footer">
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Отмена</button>
+    </div>*@
+
+@*}*@
