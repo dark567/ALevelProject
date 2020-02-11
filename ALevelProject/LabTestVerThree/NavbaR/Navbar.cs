@@ -33,7 +33,7 @@ namespace LabTestVerThree.NavbaR
             topNav.Add(new NavbarItem() { Id = 14, action = "Index", nameOption = "Админка", controller = "Admin", isParent = true, parentId = -1 });
             topNav.Add(new NavbarItem() { Id = 15, action = "Index", nameOption = "Пользователи", controller = "Admin", isParent = false, parentId = 14 });
             topNav.Add(new NavbarItem() { Id = 16, action = "Index", nameOption = "Роли", controller = "RoleAdmin", isParent = false, parentId = 14 });
-            topNav.Add(new NavbarItem() { Id = 17, action = "Index", nameOption = "Журнал действий", controller = "RoleAdmin", isParent = false, parentId = 14 });
+            topNav.Add(new NavbarItem() { Id = 17, action = "Index", nameOption = "Журнал событий", controller = "Jor", isParent = false, parentId = 14 });
 
             topNav.Add(new NavbarItem() { Id = 18, action = "Logout", nameOption = "Выйти", controller = "Account", isParent = false, parentId = -1 });
 

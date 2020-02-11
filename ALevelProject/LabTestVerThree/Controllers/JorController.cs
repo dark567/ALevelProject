@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using LabTestVerThree.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +8,14 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
-    public class TestController : Controller
+    public class JorController : Controller
     {
         // создаем контекст данных
-        EFDBContext db = new EFDBContext();
+        AppIdentityDbContext db = new AppIdentityDbContext();
         // GET: Test
         public ActionResult Index()
         {
-            return View(db.DicClients.ToList());
+            return View(db.EventDetails.ToList());
         }
     }
 }

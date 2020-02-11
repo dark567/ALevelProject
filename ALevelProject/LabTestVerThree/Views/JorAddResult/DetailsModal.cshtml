@@ -1,0 +1,54 @@
+﻿@using DataLayer.Entityes
+@model DataLayer.Entityes.JorAddResult
+
+<div class="modal-header" style="background-color:lightblue">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h2 id="myModalLabel">JorResult</h2>
+</div>
+
+<div class="modal-body" style="background-color:lightblue">
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAdd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateAdd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateDone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Num)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Num)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Good.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Good.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsFinished)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsFinished)
+        </dd>
+    </dl>
+</div>
+
+<div class="modal-footer">
+    <div class="col-md-offset-2 col-md-10">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Закрыть</button>
+    </div>
+</div>

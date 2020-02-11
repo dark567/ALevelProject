@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LabTestVerThree.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace LabTestVerThree.Controllers
     public class HomeController : Controller
     {
         [Authorize]
+        [LogConnection]
         public ActionResult Index()
         {
             return View();

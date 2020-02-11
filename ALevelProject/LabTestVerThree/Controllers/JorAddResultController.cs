@@ -7,12 +7,14 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using PagedList;
+using System.Net;
+using System.Data.Entity.Infrastructure;
 
 namespace LabTestVerThree.Controllers
 {
     public class JorAddResultController : Controller
     {
-        
+
         // создаем контекст данных
         EFDBContext db = new EFDBContext();
 
@@ -64,6 +66,144 @@ namespace LabTestVerThree.Controllers
             int pageSize = 5; /*!!!!*/
             int pageNumber = (page ?? 1);
             return View(orders.ToPagedList(pageNumber, pageSize));
+        }
+
+        // GET: JorResult/Details/5
+        public ActionResult Details(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            DicClient client = db.DicClients.Find(jorAddResult.ClientId);
+            DicGood good = db.DicGoods.Find(jorAddResult.GoodId);
+
+            db.JorAddResults.Where(p => p.ClientId == client.ClientId).Load();
+            db.JorAddResults.Where(p => p.GoodId == good.GoodId).Load();
+
+            if (jorAddResult == null)
+            {
+                return HttpNotFound();
+            }
+            return View(jorAddResult);
+        }
+
+        // GET: JorResult/Details/5
+        public ActionResult DetailsModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            if (jorAddResult == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(jorAddResult);
+        }
+
+        // GET: DicClient/Edit/5
+        public ActionResult Edit(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            DicClient client = db.DicClients.Find(jorAddResult.ClientId);
+            DicGood good = db.DicGoods.Find(jorAddResult.GoodId);
+
+            db.JorAddResults.Where(p => p.ClientId == client.ClientId).Load();
+            db.JorAddResults.Where(p => p.GoodId == good.GoodId).Load();
+
+            if (jorAddResult == null)
+            {
+                return HttpNotFound();
+            }
+            return View(jorAddResult);
+        }
+
+
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("Edit")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPost(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            if (TryUpdateModel(jorAddResult, "",
+               new string[] { "Value", "Description", "IsFinished" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return View(jorAddResult);
+        }
+
+        // GET: DicClient/Edit/5
+        public ActionResult EditModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            if (jorAddResult == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(jorAddResult);
+        }
+
+        // POST: DicClient/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost, ActionName("EditModal")]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditPostModal(Guid? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            JorAddResult jorAddResult = db.JorAddResults.Find(id);
+
+            if (TryUpdateModel(jorAddResult, "",
+               new string[] { "DateDone", "Value", "Description", "IsFinished" }))
+            {
+                try
+                {
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                catch (RetryLimitExceededException /* dex */)
+                {
+                    //Log the error (uncomment dex variable name and add a line here to write a log.
+                    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists, see your system administrator.");
+                }
+            }
+            return PartialView(jorAddResult);
         }
 
         protected override void Dispose(bool disposing)
