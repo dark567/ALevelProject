@@ -3,6 +3,7 @@ using DataLayer.Entityes;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -33,8 +34,12 @@ namespace LabTestVerThree.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<DicClient> clients = from s in db.DicClients
-                                             select s;
+            //IEnumerable<DicClient> clients = from s in db.DicClients
+            //                                 select s;
+
+            IEnumerable<DicClient> clients = db.DicClients.Include(p => p.Gender);
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 clients = clients.Where(s => s.Name.ToLower().Contains(searchString.ToLower())

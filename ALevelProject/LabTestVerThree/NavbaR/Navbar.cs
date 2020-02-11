@@ -15,7 +15,7 @@ namespace LabTestVerThree.NavbaR
             // drop down Menu 
             topNav.Add(new NavbarItem() { Id = 1, action = "Reports", nameOption = "Журналы", controller = "ReportGen", isParent = true, parentId = -1 });
             topNav.Add(new NavbarItem() { Id = 2, action = "Index", nameOption = "Заказы", controller = "JorOrders", isParent = false, parentId = 1 });
-            topNav.Add(new NavbarItem() { Id = 3, action = "Index", nameOption = "Заполнение результатов", controller = "JorAddResults", isParent = false, parentId = 1 });
+            topNav.Add(new NavbarItem() { Id = 3, action = "Index", nameOption = "Заполнение результатов", controller = "JorAddResult", isParent = false, parentId = 1 });
             topNav.Add(new NavbarItem() { Id = 4, action = "Index", nameOption = "Результаты", controller = "ReportGen", isParent = false, parentId = 1 });
             // drop down Menu 
             topNav.Add(new NavbarItem() { Id = 5, action = "Reports", nameOption = "Справочники", controller = "ReportGen", isParent = true, parentId = -1 });

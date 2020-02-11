@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<DataLayer.Entityes.JorAddResult>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "JorAddResult";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Справочник услуг</title>
+</head>
+<body>
+    <div>
+        <h3>JorOrder</h3>
+        @*<p>
+            @Html.ActionLink("Create NewNew", "Create_")
+        </p>*@
+        @using (Html.BeginForm("Index", "JorAddResult", FormMethod.Get))
+        {
+            <p>
+                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                <input type="submit" value="Search" />
+            </p>
+        }
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.ActionLink("Дата Заказа", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.NumSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    Клиент
+                </th>
+                <th>
+                    Услуга
+                </th>
+                <th>
+                    Описание
+                </th>
+                <th>
+                    Выполнено
+                </th>
+                <th></th>
+            </tr>
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateAdd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Num)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Good.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.CheckBox("isNewlyEnrolled", item.DateDone)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.AddResultId }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.AddResultId }) 
+                        @*@Html.ActionLink("Delete", "Delete", new { id = item.AddResultId })*@
+                    </td>
+                </tr>
+            }
+
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+            new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+
+    </div>
+</body>
+</html>

@@ -24,10 +24,10 @@ namespace DataLayer.Entityes
         public string Surname { get; set; }
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string Secname { get; set; }
-        public string FullName { get { return string.Format("{0} {1}", Name, Surname); } }
+        public string FullName { get { return string.Format($"{Surname} {Name} {Secname}").Trim(); } }
 
-        [Display(Name = "Пол")]
-        public Gender GenderId { get; set; }
+        public Guid GenderId { get; set; }
+        public Gender Gender { get; set; }
 
         public string Phone { get; set; }
         public string Email { get; set; }
@@ -39,6 +39,7 @@ namespace DataLayer.Entityes
         [Display(Name = "Дата рождения")]
         public DateTime BirthDate { get; set; }
         public byte[] Photo { get; set; } //todo ver2
+
 
         public ICollection<JorOrder> jorOrder { get; set; }
 

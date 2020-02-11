@@ -166,6 +166,7 @@
     <Compile Include="Controllers\DicGoodsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JorAddResultController.cs" />
     <Compile Include="Controllers\JorOrdersController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
@@ -258,6 +259,7 @@
     <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\JorOrders\Create_.cshtml" />
     <Content Include="Views\JorOrders\ListClients_.cshtml" />
+    <Content Include="Views\JorAddResult\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

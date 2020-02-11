@@ -14,8 +14,8 @@ namespace DataLayer
         public DbSet<DicGood> DicGoods { get; set; }
         public DbSet<Gender> Genders { get; set; }
         public DbSet<JorOrder> JorOrders { get; set; }
-        //public DbSet<JorAddResult> JorAddResults { get; set; }
-        //public DbSet<JorResult> JorResults { get; set; }
+        public DbSet<JorAddResult> JorAddResults { get; set; }
+        public DbSet<JorResult> JorResults { get; set; }
 
         public EFDBContext() : base("DefaultConnection") {
             Configuration.LazyLoadingEnabled = false;

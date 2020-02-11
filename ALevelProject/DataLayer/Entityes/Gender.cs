@@ -15,5 +15,7 @@ namespace DataLayer.Entityes
         public Guid GenderId { get; set; }
         [Display(Name = "Пол")]
         public string Type { get; set; }
+
+        public ICollection<DicClient> dicClients { get; set; }
     }
 }

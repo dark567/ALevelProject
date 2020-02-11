@@ -78,6 +78,7 @@
     <Compile Include="Entityes\DicClient.cs" />
     <Compile Include="Entityes\DicGood.cs" />
     <Compile Include="Entityes\Gender.cs" />
+    <Compile Include="Entityes\JorAddResult.cs" />
     <Compile Include="Entityes\JorOrder.cs" />
     <Compile Include="Entityes\JorResult.cs" />
     <Compile Include="LabDbInitializer.cs" />

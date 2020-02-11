@@ -30,9 +30,14 @@ namespace DataLayer.Entityes
         [Display(Name = "Дата Отправки")]
         public DateTime DateSent { get; set; }
         [Display(Name = "Клиент")]
-        public DicClient ClientId { get; set; }
+
+        public Guid? ClientId { get; set; }
+        public DicClient Client { get; set; }
+
         [Display(Name = "Услуга")]
-        public DicGood GoodId { get; set; }
+        public Guid? GoodId { get; set; }
+        public DicGood Good { get; set; }
+
         public int Value { get; set; }
         [Display(Name = "Описание")]
         public string Description { get; set; }

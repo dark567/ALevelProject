@@ -132,7 +132,7 @@
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.GenderId)
+                @Html.DisplayFor(modelItem => item.Gender.Type)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.ClientId })

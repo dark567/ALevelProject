@@ -21,16 +21,16 @@ namespace DataLayer
             db.Genders.Add(g2);
             db.Genders.Add(g3);
 
-            DicClient dс1 = new DicClient { Name = "Иван", Surname = "Дорн", Secname = "Антонович", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 18, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс2 = new DicClient { Name = "Петр", Surname = "Скворцов", Secname = "Сергеевич", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 20, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс3 = new DicClient { Name = "Светлана", Surname = "Неизвестная", Secname = "Петрович", GenderId = g3, Phone = "777-55-12", Email = "adasd@list.ru", Age = 30, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс4 = new DicClient { Name = "Сергей", Surname = "Михайлов", Secname = "Иванович", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 40, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс5 = new DicClient { Name = "Михаил", Surname = "Боярский", Secname = "Владимирович", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 17, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс6 = new DicClient { Name = "Мария", Surname = "Высокая", Secname = "Петрович", GenderId = g3, Phone = "777-55-12", Email = "adasd@list.ru", Age = 55, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс7 = new DicClient { Name = "Денис", Surname = "Воронов", Secname = "Андреевич", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 47, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс8 = new DicClient { Name = "Стас", Surname = "Иванов", Secname = "Михайлович", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 70, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс9 = new DicClient { Name = "Владимир", Surname = "Высоцкий", Secname = "Петрович", GenderId = g1, Phone = "777-55-12", Email = "adasd@list.ru", Age = 12, BirthDate = DateTime.Parse("2012-08-15") };
-            DicClient dс10 = new DicClient { Name = "Катерина", Surname = "Донская", Secname = "Петрович", GenderId = g3, Phone = "777-55-12", Email = "adasd@list.ru", Age = 37, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс1 = new DicClient { Name = "Иван", Surname = "Дорн", Secname = "Антонович", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 18, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс2 = new DicClient { Name = "Петр", Surname = "Скворцов", Secname = "Сергеевич", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 20, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс3 = new DicClient { Name = "Светлана", Surname = "Неизвестная", Secname = "Петрович", Gender = g3, GenderId = g3.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 30, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс4 = new DicClient { Name = "Сергей", Surname = "Михайлов", Secname = "Иванович", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 40, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс5 = new DicClient { Name = "Михаил", Surname = "Боярский", Secname = "Владимирович", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 17, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс6 = new DicClient { Name = "Мария", Surname = "Высокая", Secname = "Петрович", Gender = g3, GenderId = g3.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 55, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс7 = new DicClient { Name = "Денис", Surname = "Воронов", Secname = "Андреевич", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 47, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс8 = new DicClient { Name = "Стас", Surname = "Иванов", Secname = "Михайлович", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 70, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс9 = new DicClient { Name = "Владимир", Surname = "Высоцкий", Secname = "Петрович", Gender = g1, GenderId = g1.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 12, BirthDate = DateTime.Parse("2012-08-15") };
+            DicClient dс10 = new DicClient { Name = "Катерина", Surname = "Донская", Secname = "Петрович", Gender = g3, GenderId = g3.GenderId, Phone = "777-55-12", Email = "adasd@list.ru", Age = 37, BirthDate = DateTime.Parse("2012-08-15") };
 
             db.DicClients.Add(dс1);
             db.DicClients.Add(dс2);
@@ -86,6 +86,32 @@ namespace DataLayer
             db.JorOrders.Add(jo10);
             db.JorOrders.Add(jo11);
             db.JorOrders.Add(jo12);
+
+            JorAddResult jrAr1 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000001",Client = dс1, ClientId = dс1.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            JorAddResult jrAr2 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000002", Client = dс2, ClientId = dс2.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            JorAddResult jrAr3 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000003", Client = dс3, ClientId = dс3.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            JorAddResult jrAr4 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000004", Client = dс4, ClientId = dс4.ClientId, Good = dg4, GoodId = dg4.GoodId };
+            JorAddResult jrAr5 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000005", Client = dс5, ClientId = dс5.ClientId, Good = dg5, GoodId = dg5.GoodId };
+            JorAddResult jrAr6 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000006", Client = dс6, ClientId = dс6.ClientId, Good = dg6, GoodId = dg6.GoodId };
+            JorAddResult jrAr7 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000007", Client = dс1, ClientId = dс1.ClientId, Good = dg7, GoodId = dg7.GoodId };
+            JorAddResult jrAr8 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000008", Client = dс2, ClientId = dс2.ClientId, Good = dg8, GoodId = dg8.GoodId };
+            JorAddResult jrAr9 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000009", Client = dс3, ClientId = dс3.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            JorAddResult jrAr10 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000010", Client = dс4, ClientId = dс4.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            JorAddResult jrAr11 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000011", Client = dс5, ClientId = dс5.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            JorAddResult jrAr12 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000012", Client = dс6, ClientId = dс6.ClientId, Good = dg4, GoodId = dg4.GoodId };
+
+            db.JorAddResults.Add(jrAr1);
+            db.JorAddResults.Add(jrAr2);
+            db.JorAddResults.Add(jrAr3);
+            db.JorAddResults.Add(jrAr4);
+            db.JorAddResults.Add(jrAr5);
+            db.JorAddResults.Add(jrAr6);
+            db.JorAddResults.Add(jrAr7);
+            db.JorAddResults.Add(jrAr8);
+            db.JorAddResults.Add(jrAr9);
+            db.JorAddResults.Add(jrAr10);
+            db.JorAddResults.Add(jrAr11);
+            db.JorAddResults.Add(jrAr12);
 
 
             base.Seed(db);

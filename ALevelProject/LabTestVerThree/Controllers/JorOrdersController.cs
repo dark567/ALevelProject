@@ -7,7 +7,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
@@ -42,8 +41,6 @@ namespace LabTestVerThree.Controllers
 
             IEnumerable<JorOrder> orders = db.JorOrders.Include(p => p.Client).Include(d =>d.Good);
 
-
-
             if (!String.IsNullOrEmpty(searchString))
             {
                 orders = orders.Where(s => s.Num.ToLower().Contains(searchString.ToLower())
@@ -69,6 +66,7 @@ namespace LabTestVerThree.Controllers
             int pageNumber = (page ?? 1);
             return View(orders.ToPagedList(pageNumber, pageSize));
         }
+
         // GET: DicGoods/Create
         public ActionResult Create()
         {
