@@ -20,7 +20,7 @@ namespace DataLayer.Entityes
         public string Code { get; set; }
         [Required]
         [StringLength(50, MinimumLength = 4, ErrorMessage = "The name cannot be longer than 50 characters and less than 4.")]
-        [Display(Name = "Name")]
+        [Display(Name = "Название услуги")]
         public string Name { get; set; }
         [Range(0, 100)]
         public int MaxValue { get; set; }

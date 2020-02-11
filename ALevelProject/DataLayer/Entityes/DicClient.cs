@@ -24,6 +24,8 @@ namespace DataLayer.Entityes
         public string Surname { get; set; }
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
         public string Secname { get; set; }
+
+        [Display(Name = "ФИО")]
         public string FullName { get { return string.Format($"{Surname} {Name} {Secname}").Trim(); } }
 
         public Guid GenderId { get; set; }

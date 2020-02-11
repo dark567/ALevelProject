@@ -18,19 +18,24 @@ namespace DataLayer.Entityes
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата Заказа")]
-        public DateTime DateAdd { get; set; }
+        public DateTime DateAdd { get; set; } = DateTime.Now;
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата Выполнения")]
-        public DateTime DateDone { get; set; }
+        public DateTime DateDone { get; set; } = DateTime.Now;
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Дата Отправки")]
-        public DateTime DateSent { get; set; }
-        [Display(Name = "Клиент")]
+        public DateTime DateSent { get; set; } = DateTime.Now;
 
+        [StringLength(10, MinimumLength = 4, ErrorMessage = "The name cannot be longer than 10 characters and less than 4.")]
+        [Display(Name = "Номер")]
+        [Required]
+        public string Num { get; set; }
+
+        [Display(Name = "Клиент")]
         public Guid? ClientId { get; set; }
         public DicClient Client { get; set; }
 

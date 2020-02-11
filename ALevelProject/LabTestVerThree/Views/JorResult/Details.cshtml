@@ -1,0 +1,55 @@
+﻿@model DataLayer.Entityes.JorResult
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Детали</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DateAdd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateAdd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DateDone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DateDone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Num)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Num)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Client.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Client.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Good.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Good.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSent)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsSent)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ResultId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

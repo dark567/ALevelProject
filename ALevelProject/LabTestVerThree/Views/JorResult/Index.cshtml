@@ -1,9 +1,9 @@
-﻿@model PagedList.IPagedList<DataLayer.Entityes.DicClient>
+﻿@model PagedList.IPagedList<DataLayer.Entityes.JorResult>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Справочник клиентов";
+    ViewBag.Title = "JorResults";
 }
 
 <!DOCTYPE html>
@@ -11,34 +11,27 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Справочник клиентов</title>
+    <title>JorResults</title>
 </head>
 <body>
     <div>
-        <h3>Справочник клиентов</h3>
-        <p>
-            @*@Html.ActionLink("Create New", "Create")*@
-
-            @Html.ActionLink("CreateModalNew", "CreateM", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
-        </p>
-
+        <h3>JorResults</h3>
         <div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div id='dialogContent'></div>
-                    </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='dialogContent'></div>
                 </div>
             </div>
+        </div>
 
-            <div id="modDialogDet" class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div id="dialogContentDet" class="modal-dialog"></div>
-            </div>
+        <div id="modDialogDet" class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="dialogContentDet" class="modal-dialog"></div>
+        </div>
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
 
-            <script type="text/javascript">
-                $(function () {
+            <script type="text/javascript">$(function () {
 
                     //Optional: turn the chache off
                     // Необязательно: выключить кеш
@@ -75,12 +68,9 @@
                         });
                         return false;
                     });
-                }
-            </script>
- 
-            <script type="text/javascript">
+                }</script>
 
-                $(function () {
+            <script type="text/javascript">$(function () {
                     $.ajaxSetup({ cache: false });
                     $(".detailsModal").click(function (e) {
 
@@ -90,14 +80,13 @@
                             $('#modDialogDet').modal('show');
                         });
                     });
-                })
-            </script>
+                })</script>
         }
 
-        @using (Html.BeginForm("Index", "DicClients", FormMethod.Get))
+        @using (Html.BeginForm("Index", "JorResult", FormMethod.Get))
         {
             <p>
-                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                Find by Num: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
                 <input type="submit" value="Search" />
             </p>
         }
@@ -105,43 +94,61 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Дата Заказа", "Index", new { sortOrder = ViewBag.DateOrdSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    SurName
+                    @Html.ActionLink("Дата Отправки", "Index", new { sortOrder = ViewBag.DateSentSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink("BirthDate", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.NumSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    Пол
+                    Клиент
+                </th>
+                <th>
+                    Услуга
+                </th>
+                <th>
+                    Описание
+                </th>
+                <th>
+                    Отправлено
                 </th>
                 <th></th>
             </tr>
 
+
             @foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender.Type)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
-                @Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |
-                @Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
-            </td>
-        </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateAdd)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DateSent)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Num)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Client.FullName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Good.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.CheckBox("isNewlyEnrolled", item.IsSent)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ResultId }) |
+                        @Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ResultId }) |
+                        @Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" })
+                    </td>
+                </tr>
             }
 
         </table>

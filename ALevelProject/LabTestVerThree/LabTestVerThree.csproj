@@ -168,6 +168,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JorAddResultController.cs" />
     <Compile Include="Controllers\JorOrdersController.cs" />
+    <Compile Include="Controllers\JorResultController.cs" />
     <Compile Include="Controllers\NavigationController.cs" />
     <Compile Include="Controllers\RoleAdminController.cs" />
     <Compile Include="Controllers\TestController.cs" />
@@ -260,6 +261,12 @@
     <Content Include="Views\JorOrders\Create_.cshtml" />
     <Content Include="Views\JorOrders\ListClients_.cshtml" />
     <Content Include="Views\JorAddResult\Index.cshtml" />
+    <Content Include="Views\JorResult\Index.cshtml" />
+    <Content Include="Views\JorOrders\EditModal.cshtml" />
+    <Content Include="Views\JorResult\Edit.cshtml" />
+    <Content Include="Views\JorResult\EditModal.cshtml" />
+    <Content Include="Views\JorResult\DetailsModal.cshtml" />
+    <Content Include="Views\JorResult\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
