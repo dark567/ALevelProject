@@ -1,18 +1,19 @@
 ﻿using LabTestVerThree.Filters;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using log4net;
 using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
     public class HomeController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
+
         [Authorize]
         [LogConnection]
         public ActionResult Index()
         {
+            Log.Info("Start HomeController");
+
             return View();
         }
         [Authorize]

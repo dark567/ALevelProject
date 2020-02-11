@@ -1,0 +1,6 @@
+2020-02-12 00:20:23,956 [10] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Hi I am log4net Info Level
+2020-02-12 00:27:57,555 [1] INFO  LabTestVerThree.MvcApplication [(null)] - Start MvcApplication
+2020-02-12 00:28:07,957 [10] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController
+2020-02-12 00:30:26,216 [1] INFO  LabTestVerThree.MvcApplication [(null)] - Start MvcApplication
+2020-02-12 00:30:36,249 [9] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController
+2020-02-12 00:31:45,328 [9] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController
