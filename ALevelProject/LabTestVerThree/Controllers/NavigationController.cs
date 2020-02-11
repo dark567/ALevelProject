@@ -8,8 +8,27 @@ namespace LabTestVerThree.Controllers
         // GET: Navbar
         public ActionResult TopNav()
         {
-            var nav = new Navbar();
-            return PartialView("_topNav", nav.NavbarTop());
+            
+
+            if (User.IsInRole("admins"))
+            {
+                var nav = new Navbar();
+                return PartialView("_topNav", nav.NavbarTop());
+            }
+            if (User.IsInRole("managers"))
+            {
+                var nav = new NavbarManager();
+                return PartialView("_topNav", nav.NavbarTop()); }
+            if (User.IsInRole("laborants"))
+            {
+                var nav = new NavbarLaborant();
+                return PartialView("_topNav", nav.NavbarTop());
+            }
+            else
+            {
+                var nav = new NavbarManager();
+                return PartialView("_topNav", nav.NavbarTop());
+            }
         }
     }
 }

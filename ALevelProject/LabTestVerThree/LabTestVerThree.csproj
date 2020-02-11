@@ -191,6 +191,8 @@
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="NavbaR\Navbar.cs" />
     <Compile Include="NavbaR\NavbarItem.cs" />
+    <Compile Include="NavbaR\NavbarLaborant.cs" />
+    <Compile Include="NavbaR\NavbarManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
