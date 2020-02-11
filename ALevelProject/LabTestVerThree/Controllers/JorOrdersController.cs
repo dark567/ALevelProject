@@ -3,6 +3,7 @@ using DataLayer.Entityes;
 using PagedList;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -36,32 +37,37 @@ namespace LabTestVerThree.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<JorOrder> good = from s in db.JorOrder
-                                         select s;
+            //IEnumerable<JorOrder> good = from s in db.JorOrders
+            //                             select s;
+
+            IEnumerable<JorOrder> orders = db.JorOrders.Include(p => p.Client).Include(d =>d.Good);
+
+
+
             if (!String.IsNullOrEmpty(searchString))
             {
-                good = good.Where(s => s.Num.ToLower().Contains(searchString.ToLower())
+                orders = orders.Where(s => s.Num.ToLower().Contains(searchString.ToLower())
                                        || s.DateAdd.Equals(searchString));
             }
             switch (sortOrder)
             {
                 case "сode":
-                    good = good.OrderByDescending(s => s.DateAdd);
+                    orders = orders.OrderByDescending(s => s.DateAdd);
                     break;
                 case "name":
-                    good = good.OrderBy(s => s.Num);
+                    orders = orders.OrderBy(s => s.Num);
                     break;
                 case "code_name":
-                    good = good.OrderByDescending(s => s.DateAdd);
+                    orders = orders.OrderByDescending(s => s.DateAdd);
                     break;
                 default:  // Name ascending 
-                    good = good.OrderBy(s => s.Num);
+                    orders = orders.OrderBy(s => s.Num);
                     break;
             }
 
             int pageSize = 5; /*!!!!*/
             int pageNumber = (page ?? 1);
-            return View(good.ToPagedList(pageNumber, pageSize));
+            return View(orders.ToPagedList(pageNumber, pageSize));
         }
         // GET: DicGoods/Create
         public ActionResult Create()
@@ -80,7 +86,7 @@ namespace LabTestVerThree.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.JorOrder.Add(jorOrder);
+                    db.JorOrders.Add(jorOrder);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -97,7 +103,7 @@ namespace LabTestVerThree.Controllers
         {
             if (id != null)
             {
-                DicClient dicClient = db.DicClient.Find(id);
+                DicClient dicClient = db.DicClients.Find(id);
 
                 if (ModelState.IsValid)
                 {
@@ -108,7 +114,7 @@ namespace LabTestVerThree.Controllers
                     return PartialView("ListClients_");
                 }
             }
-            
+
 
 
 
@@ -124,7 +130,7 @@ namespace LabTestVerThree.Controllers
         {
             try
             {
-                DicClient dicClient = db.DicClient.Find(id);
+                DicClient dicClient = db.DicClients.Find(id);
 
                 if (ModelState.IsValid)
                 {
@@ -162,7 +168,7 @@ namespace LabTestVerThree.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<DicClient> clients = from s in db.DicClient
+            IEnumerable<DicClient> clients = from s in db.DicClients
                                              select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -206,7 +212,7 @@ namespace LabTestVerThree.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.DicClient.Add(client);
+                    db.DicClients.Add(client);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
@@ -229,7 +235,7 @@ namespace LabTestVerThree.Controllers
         {
             try
             {
-                DicClient dicClient = db.DicClient.Find(id);
+                DicClient dicClient = db.DicClients.Find(id);
 
                 if (ModelState.IsValid)
                 {
@@ -306,7 +312,7 @@ namespace LabTestVerThree.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -321,7 +327,7 @@ namespace LabTestVerThree.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -340,7 +346,7 @@ namespace LabTestVerThree.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var jorOrderToUpdate = db.JorOrder.Find(id);
+            var jorOrderToUpdate = db.JorOrders.Find(id);
             if (TryUpdateModel(jorOrderToUpdate, "",
                new string[] { "Code", "Name", "MinValue", "MaxValue", "Description" }))
             {
@@ -370,7 +376,7 @@ namespace LabTestVerThree.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -385,8 +391,8 @@ namespace LabTestVerThree.Controllers
         {
             try
             {
-                JorOrder jorOrder = db.JorOrder.Find(id);
-                db.JorOrder.Remove(jorOrder);
+                JorOrder jorOrder = db.JorOrders.Find(id);
+                db.JorOrders.Remove(jorOrder);
                 db.SaveChanges();
             }
             catch (RetryLimitExceededException/* dex */)

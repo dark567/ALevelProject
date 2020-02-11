@@ -15,6 +15,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -75,47 +75,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EFDBContext.cs" />
-    <Compile Include="Entityes\bdDiagr.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bdDiagr.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entityes\bdDiagr.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bdDiagr.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entityes\bdDiagr.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>bdDiagr.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Entityes\DicClient.cs" />
-    <Compile Include="Entityes\DicClients.cs">
-      <DependentUpon>bdDiagr.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entityes\DicGood.cs" />
-    <Compile Include="Entityes\DicGoods.cs">
-      <DependentUpon>bdDiagr.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entityes\Gender.cs" />
     <Compile Include="Entityes\JorOrder.cs" />
-    <Compile Include="Entityes\JorOrders.cs">
-      <DependentUpon>bdDiagr.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entityes\JorResult.cs" />
     <Compile Include="LabDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="Entityes\bdDiagr.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>bdDiagr.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Entityes\bdDiagr.edmx.diagram">
-      <DependentUpon>bdDiagr.edmx</DependentUpon>
-    </None>
     <None Include="fonts\glyphicons-halflings-regular.eot" />
     <None Include="fonts\glyphicons-halflings-regular.ttf" />
     <None Include="fonts\glyphicons-halflings-regular.woff" />
@@ -127,16 +96,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Entityes\bdDiagr.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bdDiagr.edmx</DependentUpon>
-      <LastGenOutput>bdDiagr.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entityes\bdDiagr.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>bdDiagr.edmx</DependentUpon>
-      <LastGenOutput>bdDiagr.cs</LastGenOutput>
-    </Content>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

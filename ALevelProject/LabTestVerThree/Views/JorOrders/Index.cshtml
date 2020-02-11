@@ -31,19 +31,22 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("DateAdd", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Дата Заказа", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink("Num", "Index", new { sortOrder = ViewBag.NumSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Номер", "Index", new { sortOrder = ViewBag.NumSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    ClientId
+                    Клиент
                 </th>
                 <th>
-                    GoodId
+                    Услуга
                 </th>
                 <th>
-                    Description
+                    Описание
+                </th>
+                <th>
+                    Оплата
                 </th>
                 <th></th>
             </tr>
@@ -51,28 +54,31 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateAdd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Num)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ClientId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.GoodId)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Good.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.CheckBox("isNewlyEnrolled", item.Pay)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
+            </td>
+        </tr>
             }
 
         </table>

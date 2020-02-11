@@ -34,7 +34,7 @@ namespace LabTest.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<DicGood> good = from s in db.DicGood
+            IEnumerable<DicGood> good = from s in db.DicGoods
                                         select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -79,7 +79,7 @@ namespace LabTest.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.DicGood.Add(good);
+                    db.DicGoods.Add(good);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -99,7 +99,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicGood dicGood = db.DicGood.Find(id);
+            DicGood dicGood = db.DicGoods.Find(id);
             if (dicGood == null)
             {
                 return HttpNotFound();
@@ -114,7 +114,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicGood dicGood = db.DicGood.Find(id);
+            DicGood dicGood = db.DicGoods.Find(id);
             if (dicGood == null)
             {
                 return HttpNotFound();
@@ -133,7 +133,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var goodToUpdate = db.DicGood.Find(id);
+            var goodToUpdate = db.DicGoods.Find(id);
             if (TryUpdateModel(goodToUpdate, "",
                new string[] { "Code", "Name", "MinValue", "MaxValue", "Description" }))
             {
@@ -163,7 +163,7 @@ namespace LabTest.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            DicGood dicGood = db.DicGood.Find(id);
+            DicGood dicGood = db.DicGoods.Find(id);
             if (dicGood == null)
             {
                 return HttpNotFound();
@@ -178,8 +178,8 @@ namespace LabTest.Controllers
         {
             try
             {
-                DicGood dicGood = db.DicGood.Find(id);
-                db.DicGood.Remove(dicGood);
+                DicGood dicGood = db.DicGoods.Find(id);
+                db.DicGoods.Remove(dicGood);
                 db.SaveChanges();
             }
             catch (RetryLimitExceededException/* dex */)

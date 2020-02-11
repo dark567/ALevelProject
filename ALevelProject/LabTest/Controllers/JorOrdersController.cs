@@ -36,7 +36,7 @@ namespace LabTest.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<JorOrder> good = from s in db.JorOrder
+            IEnumerable<JorOrder> good = from s in db.JorOrders
                                          select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -80,7 +80,7 @@ namespace LabTest.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.JorOrder.Add(jorOrder);
+                    db.JorOrders.Add(jorOrder);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -100,7 +100,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -115,7 +115,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -134,7 +134,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var jorOrderToUpdate = db.JorOrder.Find(id);
+            var jorOrderToUpdate = db.JorOrders.Find(id);
             if (TryUpdateModel(jorOrderToUpdate, "",
                new string[] { "Code", "Name", "MinValue", "MaxValue", "Description" }))
             {
@@ -164,7 +164,7 @@ namespace LabTest.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            JorOrder jorOrder = db.JorOrder.Find(id);
+            JorOrder jorOrder = db.JorOrders.Find(id);
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -179,8 +179,8 @@ namespace LabTest.Controllers
         {
             try
             {
-                JorOrder jorOrder = db.JorOrder.Find(id);
-                db.JorOrder.Remove(jorOrder);
+                JorOrder jorOrder = db.JorOrders.Find(id);
+                db.JorOrders.Remove(jorOrder);
                 db.SaveChanges();
             }
             catch (RetryLimitExceededException/* dex */)

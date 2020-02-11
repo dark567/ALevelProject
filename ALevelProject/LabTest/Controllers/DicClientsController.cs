@@ -33,7 +33,7 @@ namespace LabTest.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            IEnumerable<DicClient> clients = from s in db.DicClient
+            IEnumerable<DicClient> clients = from s in db.DicClients
                                              select s;
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -85,7 +85,7 @@ namespace LabTest.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.DicClient.Add(client);
+                    db.DicClients.Add(client);
                     db.SaveChanges();
                     return RedirectToAction("Index");
                 }
@@ -100,7 +100,7 @@ namespace LabTest.Controllers
 
         public ActionResult CreateM()
         {
-            SelectList gender = new SelectList(db.Gender, "GenderId", "Type");
+            SelectList gender = new SelectList(db.Genders, "GenderId", "Type");
 
             ////List<Gender> genderList = new List<Gender> {
             ////                                 new Gender{ Type="Male"},
@@ -122,7 +122,7 @@ namespace LabTest.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    db.DicClient.Add(client);
+                    db.DicClients.Add(client);
                     db.SaveChanges();
                     return Json(new { success = true });
                 }
@@ -148,7 +148,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicClient dicClient = db.DicClient.Find(id);
+            DicClient dicClient = db.DicClients.Find(id);
             if (dicClient == null)
             {
                 return HttpNotFound();
@@ -163,7 +163,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicClient dicClient = db.DicClient.Find(id);
+            DicClient dicClient = db.DicClients.Find(id);
             if (dicClient == null)
             {
                 return HttpNotFound();
@@ -178,7 +178,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicClient dicClient = db.DicClient.Find(id);
+            DicClient dicClient = db.DicClients.Find(id);
             if (dicClient == null)
             {
                 return HttpNotFound();
@@ -197,7 +197,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var clientToUpdate = db.DicClient.Find(id);
+            var clientToUpdate = db.DicClients.Find(id);
             if (TryUpdateModel(clientToUpdate, "",
                new string[] { "Name", "Surname", "BirthDate" }))
             {
@@ -223,7 +223,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            DicClient dicClient = db.DicClient.Find(id);
+            DicClient dicClient = db.DicClients.Find(id);
             if (dicClient == null)
             {
                 return HttpNotFound();
@@ -242,7 +242,7 @@ namespace LabTest.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var clientToUpdate = db.DicClient.Find(id);
+            var clientToUpdate = db.DicClients.Find(id);
             if (TryUpdateModel(clientToUpdate, "",
                new string[] { "Name", "Surname", "BirthDate" }))
             {
@@ -272,7 +272,7 @@ namespace LabTest.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            DicClient dicClient = db.DicClient.Find(id);
+            DicClient dicClient = db.DicClients.Find(id);
             if (dicClient == null)
             {
                 return HttpNotFound();
@@ -287,8 +287,8 @@ namespace LabTest.Controllers
         {
             try
             {
-                DicClient dicClient = db.DicClient.Find(id);
-                db.DicClient.Remove(dicClient);
+                DicClient dicClient = db.DicClients.Find(id);
+                db.DicClients.Remove(dicClient);
                 db.SaveChanges();
             }
             catch (RetryLimitExceededException/* dex */)

@@ -14,7 +14,7 @@ namespace LabTestVerThree.Controllers
         // GET: Test
         public ActionResult Index()
         {
-            return View(db.DicClient.ToList());
+            return View(db.DicClients.ToList());
         }
     }
 }

@@ -27,5 +27,7 @@ namespace DataLayer.Entityes
         [Range(0, 100)]
         public int MinValue { get; set; }
         public string Description { get; set; }
+
+        public ICollection<JorOrder> jorOrder { get; set; }
     }
 }
