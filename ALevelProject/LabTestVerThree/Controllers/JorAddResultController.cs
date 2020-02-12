@@ -148,6 +148,7 @@ namespace LabTestVerThree.Controllers
                 {
                     db.SaveChanges();
 
+                    AddJorAddResults(jorAddResult);
                     return RedirectToAction("Index");
                 }
                 catch (RetryLimitExceededException /* dex */)
@@ -157,6 +158,31 @@ namespace LabTestVerThree.Controllers
                 }
             }
             return View(jorAddResult);
+        }
+
+        private static void AddJorAddResults(JorAddResult jorAddResult)
+        {
+            if (jorAddResult.IsFinished == true)
+            {
+                JorResult jorResult = new JorResult()
+                {
+                    DateAdd = jorAddResult.DateAdd,
+                    DateDone = jorAddResult.DateAdd,
+                    Num = jorAddResult.Num,
+
+                    ClientId = jorAddResult.ClientId,
+                    GoodId = jorAddResult.GoodId,
+                    Value = jorAddResult.Value,
+                    Description = jorAddResult.Description
+                };
+
+                using (EFDBContext db = new EFDBContext())
+                {
+                    db.JorResults.Add(jorResult);
+                    db.SaveChanges();
+                }
+
+            }
         }
 
         // GET: DicClient/Edit/5

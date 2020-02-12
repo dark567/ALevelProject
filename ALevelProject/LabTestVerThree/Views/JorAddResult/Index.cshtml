@@ -11,18 +11,16 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Справочник услуг</title>
+    <title>Заполнение результатов</title>
 </head>
 <body>
     <div>
-        <h3>JorOrder</h3>
-        @*<p>
-            @Html.ActionLink("Create NewNew", "Create_")
-        </p>*@
+        <h3>JorAddResult</h3>
+
         @using (Html.BeginForm("Index", "JorAddResult", FormMethod.Get))
         {
             <p>
-                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                Find by Num: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
                 <input type="submit" value="Search" />
             </p>
         }
@@ -70,11 +68,11 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                        @Html.CheckBox("isDateDone", item.IsFinished)
+                        @Html.CheckBox("isDateDone", item.IsFinished, new { @disabled = "disabled" })
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.AddResultId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.AddResultId }) 
+                        @Html.ActionLink("Details", "Details", new { id = item.AddResultId })
                         @*@Html.ActionLink("Delete", "Delete", new { id = item.AddResultId })*@
                     </td>
                 </tr>

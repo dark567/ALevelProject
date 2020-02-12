@@ -11,77 +11,12 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>JorResults</title>
+    <title>Результаты</title>
 </head>
 <body>
     <div>
-        <h3>JorResults</h3>
-        <div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div id='dialogContent'></div>
-                </div>
-            </div>
-        </div>
-
-        <div id="modDialogDet" class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div id="dialogContentDet" class="modal-dialog"></div>
-        </div>
-
-        @section Scripts {
-            @Scripts.Render("~/bundles/jqueryval")
-
-            <script type="text/javascript">$(function () {
-
-                    //Optional: turn the chache off
-                    // Необязательно: выключить кеш
-                    $.ajaxSetup({ cache: false });
-
-                    $('#btnCreate').click(function () {
-                        $('#dialogContent').load(this.href, function () {
-                            $('#dialogDiv').modal({
-                                backdrop: 'static',
-                                keyboard: true
-                            }, 'show');
-                            bindForm(this);
-                        });
-                        return false;
-                    });
-                });
-
-                function bindForm(dialog) {
-                    $('form', dialog).submit(function () {
-                        $.ajax({
-                            url: this.action,
-                            type: this.method,
-                            data: $(this).serialize(),
-                            success: function (result) {
-                                if (result.success) {
-                                    $('#dialogDiv').modal('hide');
-                                    // Refresh:
-                                    // location.reload();
-                                } else {
-                                    $('#dialogContent').html(result);
-                                    bindForm();
-                                }
-                            }
-                        });
-                        return false;
-                    });
-                }</script>
-
-            <script type="text/javascript">$(function () {
-                    $.ajaxSetup({ cache: false });
-                    $(".detailsModal").click(function (e) {
-
-                        e.preventDefault();
-                        $.get(this.href, function (data) {
-                            $('#dialogContentDet').html(data);
-                            $('#modDialogDet').modal('show');
-                        });
-                    });
-                })</script>
-        }
+        <h2>JorResults</h2>
+  
 
         @using (Html.BeginForm("Index", "JorResult", FormMethod.Get))
         {
@@ -140,13 +75,13 @@
                         @Html.DisplayFor(modelItem => item.Description)
                     </td>
                     <td>
-                        @Html.CheckBox("isNewlyEnrolled", item.IsSent)
+                        @Html.CheckBox("isNewlyEnrolled", item.IsSent, new { @disabled = "disabled" })
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.ResultId }) |
-                        @Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.ResultId }) |
-                        @Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" })
+                        @*@Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |*@
+                        @Html.ActionLink("Details", "Details", new { id = item.ResultId }) 
+                        @*@Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" })*@
                     </td>
                 </tr>
             }

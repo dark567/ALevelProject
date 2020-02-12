@@ -1,0 +1,55 @@
+﻿@model LabTestVerThree.Models.EmailModel
+
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Отправка почты</h3>
+</div>
+
+@using (Html.BeginForm("SendEmail", "JorResultController", FormMethod.Post, new { @class = "modal-form" }))
+{
+    <div class="modal-body" style="background-color:lightblue">
+        @Html.ValidationSummary()
+        <div class="modal-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Subject, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.To, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.To, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.To, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.From, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.From, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.From, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="form-group">
+                @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Body, 10, 150, new { htmlAttributes = new { @class = "form-control", style = "width: 100%; max-width: 100%;" } })
+                    @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            @*<input type="submit" class="btn btn-sm btn-danger" value="Send" />*@
+
+            <div class="text-right">
+                <input type="submit" class="btn btn-sm btn-danger" value="Send" />
+            </div>
+        </div>
+    </div>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+}

@@ -45,6 +45,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ActionMailer.Net, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="ActionMailer.Net.Mvc, Version=0.7.4.0, Culture=neutral, PublicKeyToken=e62db3114c02a1c2, processorArchitecture=MSIL">
+      <HintPath>..\packages\ActionMailer.0.7.4\lib\Net40\ActionMailer.Net.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -167,6 +173,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DicClientsController.cs" />
     <Compile Include="Controllers\DicGoodsController.cs" />
+    <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\JorAddResultController.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="Models\AppRole.cs" />
     <Compile Include="Models\AppUser.cs" />
     <Compile Include="Models\CreateModel.cs" />
+    <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EventsDetails.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="NavbaR\Navbar.cs" />
@@ -278,10 +286,12 @@
     <Content Include="Views\JorAddResult\DetailsModal.cshtml" />
     <Content Include="Views\JorAddResult\Edit.cshtml" />
     <Content Include="Views\JorOrders\ListGoods_.cshtml" />
+    <Content Include="Views\JorResult\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="ErrorLog\" />
+    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

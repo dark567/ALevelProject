@@ -9,6 +9,7 @@ using DataLayer.Entityes;
 using PagedList;
 using System.Net;
 using System.Data.Entity.Infrastructure;
+using LabTestVerThree.Models;
 
 namespace LabTestVerThree.Controllers
 {
@@ -198,6 +199,27 @@ namespace LabTestVerThree.Controllers
                 }
             }
             return PartialView(jorResult);
+        }
+
+        public ActionResult SendEmail()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public ActionResult SendEmail(EmailModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ActionResult Success()
+        {
+            return View();
+        }
+
+        public ActionResult Error()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)
