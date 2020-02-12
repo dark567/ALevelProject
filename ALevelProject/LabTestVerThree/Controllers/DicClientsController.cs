@@ -105,23 +105,21 @@ namespace LabTestVerThree.Controllers
 
         public ActionResult CreateM()
         {
-            SelectList gender = new SelectList(db.Genders, "GenderId", "Type");
-
-            ////List<Gender> genderList = new List<Gender> {
-            ////                                 new Gender{ Type="Male"},
-            ////                                 new Gender{ Type="Female"}
-            ////                                 };
-
-            //SelectList gender = new SelectList(new string[] { "n/a", "М", "Ж" });
-            ViewBag.GenderList = gender;
-
-
+            GenerateGenderList();
             return PartialView("CreateModal");
+        }
+
+        private void GenerateGenderList(object selectedGender = null)
+        {
+            var gendersQuery = from d in db.Genders
+                               orderby d.Type
+                               select d;
+            ViewBag.GenderList = new SelectList(gendersQuery, "GenderId", "Type", selectedGender);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateM(DicClient client)
+        public ActionResult CreateM([Bind(Include = "BirthDate, Name, Surname, Secname, Gender, GenderId, Email, Phone")]DicClient client)
         {
             try
             {

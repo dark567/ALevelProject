@@ -18,9 +18,10 @@
         <h3>JorOrder</h3>
         <p>
             @*@Html.ActionLink("Create New", "Create")*@
-            @Html.ActionLink("Create NewNew", "Create_")
+            @Html.ActionLink("Добавить заказ", "Create_")
         </p>
-        @using (Html.BeginForm("Index", "JorOrder", FormMethod.Get))
+
+        @using (Html.BeginForm("Index", "JorOrders", FormMethod.Get))
         {
             <p>
                 Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)

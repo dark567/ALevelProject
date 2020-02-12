@@ -14,7 +14,7 @@ namespace LabTestVerThree
 
         protected void Application_Start()
         {
-            Database.SetInitializer(new LabDbInitializer());
+           // Database.SetInitializer(new LabDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

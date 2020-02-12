@@ -277,6 +277,7 @@
     <Content Include="Views\JorAddResult\Details.cshtml" />
     <Content Include="Views\JorAddResult\DetailsModal.cshtml" />
     <Content Include="Views\JorAddResult\Edit.cshtml" />
+    <Content Include="Views\JorOrders\ListGoods_.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

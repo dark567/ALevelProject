@@ -4,62 +4,7 @@
 }
 
 <h2>Create</h2>
-@*@Html.ActionLink("Выбрать", "ListClients", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
 
-    <div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div id='dialogContent'></div>
-            </div>
-        </div>
-    </div>*@
-
-
-
-@*@section Scripts {
-        @Scripts.Render("~/bundles/jqueryval")
-
-        <script type="text/javascript">
-            $(function () {
-
-                //Optional: turn the chache off
-                // Необязательно: выключить кеш
-                $.ajaxSetup({ cache: false });
-
-                $('#btnCreate').click(function () {
-                    $('#dialogContent').load(this.href, function () {
-                        $('#dialogDiv').modal({
-                            backdrop: 'static',
-                            keyboard: true
-                        }, 'show');
-                        bindForm(this);
-                    });
-                    return false;
-                });
-            });
-
-            function bindForm(dialog) {
-                $('form', dialog).submit(function () {
-                    $.ajax({
-                        url: this.action,
-                        type: this.method,
-                        data: $(this).serialize(),
-                        success: function (result) {
-                            if (result.success) {
-                                $('#dialogDiv').modal('hide');
-                                // Refresh:
-                                // location.reload();
-                            } else {
-                                $('#dialogContent').html(result);
-                                bindForm();
-                            }
-                        }
-                    });
-                    return false;
-                });
-            }
-        </script>
-    }*@
 
 @using (Html.BeginForm())
 {
@@ -86,28 +31,28 @@
         </div>
 
         <div class="form-group">
-            @Html.Label("Клиент", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Client.FullName, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBox("Client", ViewBag.Client as string == null ? ViewBag.Client as string :ViewBag.Client.Name as string)
+
+                @if (@ViewBag.Client != null)
+                {
+                    @Html.TextBox("Client", ViewBag.Client.FullName as string)
+                }
+
                 @Html.ActionLink("Выбрать", "ListClients", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.Label("Услуга", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Good.Name, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.TextBox("Услуга", ViewBag.Good as string)
 
-                @Html.ActionLink("Выбрать", "ListClients", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
+                @if (@ViewBag.Good != null)
+                {
+                    @Html.TextBox("Good", ViewBag.Good.Name as string)
+                }
 
-                <div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div id='dialogContent'></div>
-                        </div>
-                    </div>
-                </div>
-
+                @Html.ActionLink("Выбрать", "ListGoods", null, null, new { id = "btnAddGood", @class = "btn btn-small btn-info" })
             </div>
         </div>
 
@@ -116,6 +61,13 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Pay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(model => model.Pay)
             </div>
         </div>
 
@@ -137,6 +89,14 @@
         </div>
     </div>*@
 
+<div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div id='dialogContent'></div>
+        </div>
+    </div>
+</div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
@@ -148,6 +108,17 @@
             $.ajaxSetup({ cache: false });
 
             $('#btnCreate').click(function () {
+                $('#dialogContent').load(this.href, function () {
+                    $('#dialogDiv').modal({
+                        backdrop: 'static',
+                        keyboard: true
+                    }, 'show');
+                    bindForm(this);
+                });
+                return false;
+            });
+
+            $('#btnAddGood').click(function () {
                 $('#dialogContent').load(this.href, function () {
                     $('#dialogDiv').modal({
                         backdrop: 'static',

@@ -99,13 +99,18 @@ namespace LabTestVerThree.Controllers
 
         public ActionResult Create_(Guid? id, bool? saveChangesError = false)
         {
-            if (id != null)
+            //ViewBag.Client = null;
+            if ((id != null)&&(db.DicClients.Find(id)!=null))
             {
                 DicClient dicClient = db.DicClients.Find(id);
 
                 if (ModelState.IsValid)
                 {
                     ViewBag.Client = dicClient;
+                    Session["Client"] = dicClient;
+
+                    // чтение из сессии
+                    ViewBag.Good = (DicGood)(Session["Good"]);
                 }
                 else
                 {
@@ -113,8 +118,23 @@ namespace LabTestVerThree.Controllers
                 }
             }
 
+            if ((id != null) && (db.DicGoods.Find(id) != null))
+            {
+                DicGood dicGood= db.DicGoods.Find(id);
 
-
+                if (ModelState.IsValid)
+                {
+                    ViewBag.Good = dicGood;
+                    Session["Good"] = dicGood;
+                    
+                    // чтение из сессии
+                    ViewBag.Client = (DicClient)(Session["Client"]);
+                }
+                else
+                {
+                    return PartialView("DicGoods_");
+                }
+            }
 
             return View();
         }
@@ -130,14 +150,26 @@ namespace LabTestVerThree.Controllers
             {
                 DicClient dicClient = db.DicClients.Find(id);
 
-                if (ModelState.IsValid)
-                {
-                    ViewBag.Client = dicClient;
+                if (dicClient != null) {
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.Client = dicClient;
+                    }
                 }
                 else
                 {
-                    return PartialView("ListClients_");
+                    DicGood dicGood = db.DicGoods.Find(id);
+                    if (ModelState.IsValid)
+                    {
+                        ViewBag.Good = dicGood;
+                    }
                 }
+                //else
+                //{
+                //    return PartialView("ListClients_");
+                //}
+
+                
             }
             catch (RetryLimitExceededException /* dex */)
             {
@@ -227,6 +259,83 @@ namespace LabTestVerThree.Controllers
             return View(client);
         }
 
+        public ActionResult ListGoods(string sortOrder, string currentFilter, string searchString, int? page)
+        {
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            IEnumerable<DicGood> goods = from s in db.DicGoods
+                                             select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                goods = goods.Where(s => s.Name.ToLower().Contains(searchString.ToLower())
+                                       || s.Code.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    goods = goods.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    goods = goods.OrderBy(s => s.Code);
+                    break;
+                default:  // Name ascending 
+                    goods = goods.OrderBy(s => s.Name);
+                    break;
+            }
+
+            int pageSize = 5; /*!!!!*/
+            int pageNumber = (page ?? 1);
+            //return View(clients.ToPagedList(pageNumber, pageSize));
+
+            //// получаем из бд все объекты Book
+            //IEnumerable<DicClient> dicClients = db.DicClient;
+            //// передаем все объекты в динамическое свойство Books в ViewBag
+            //ViewBag.DicClients = dicClients;
+            //// возвращаем представление
+            //return View();
+            return PartialView("ListGoods_", goods.ToPagedList(pageNumber, pageSize));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ListGoods(DicGood good)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    db.DicGoods.Add(good);
+                    db.SaveChanges();
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return PartialView("ListGoods_", good);
+                }
+            }
+            catch (RetryLimitExceededException /* dex */)
+            {
+                //Log the error (uncomment dex variable name and add a line here to write a log.
+                ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            }
+            return View(good);
+        }
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult ListClient(Guid? id)
@@ -252,6 +361,7 @@ namespace LabTestVerThree.Controllers
             //return View(client);
             return RedirectToAction("Create_");
         }
+
         //// POST: JorOrder/Create
         //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.

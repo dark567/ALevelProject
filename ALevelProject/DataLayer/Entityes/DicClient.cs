@@ -29,6 +29,7 @@ namespace DataLayer.Entityes
         public string FullName { get { return string.Format($"{Surname} {Name} {Secname}").Trim(); } }
 
         public Guid GenderId { get; set; }
+
         public Gender Gender { get; set; }
 
         public string Phone { get; set; }
