@@ -185,25 +185,7 @@ namespace LabTestVerThree.Controllers
                     db.SaveChanges();
                     //return Json(new { success = true });
 
-                    if (jorOrder.Pay == true)
-                    {
-                        JorAddResult jorAddResult = new JorAddResult()
-                        {
-                            DateAdd = jorOrder.DateAdd,
-                            Num = jorOrder.Num,
-                            Barcode = "10000001",
-                            ClientId = jorOrder.ClientId,
-                            GoodId = jorOrder.GoodId,
-                            Description = jorOrder.Description
-                        };
-
-                        using (EFDBContext db = new EFDBContext())
-                        {
-                            db.JorAddResults.Add(jorAddResult);
-                            db.SaveChanges();
-                        }
-
-                    }
+                    AddJorAddResults(jorOrder);
 
                     return RedirectToAction("Index");
                 }
@@ -220,6 +202,29 @@ namespace LabTestVerThree.Controllers
             return View(jorOrder);
 
 
+        }
+
+        private static void AddJorAddResults(JorOrder jorOrder)
+        {
+            if (jorOrder.Pay == true)
+            {
+                JorAddResult jorAddResult = new JorAddResult()
+                {
+                    DateAdd = jorOrder.DateAdd,
+                    Num = jorOrder.Num,
+                    Barcode = "10000001",
+                    ClientId = jorOrder.ClientId,
+                    GoodId = jorOrder.GoodId,
+                    Description = jorOrder.Description
+                };
+
+                using (EFDBContext db = new EFDBContext())
+                {
+                    db.JorAddResults.Add(jorAddResult);
+                    db.SaveChanges();
+                }
+
+            }
         }
 
         public ActionResult ListClients(string sortOrder, string currentFilter, string searchString, int? page)
@@ -497,7 +502,10 @@ namespace LabTestVerThree.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JorOrder jorOrder = db.JorOrders.Find(id);
+            //JorOrder jorOrder = db.JorOrders.Find(id);
+
+            JorOrder jorOrder = db.JorOrders.Include(p => p.Client).Include(d => d.Good).FirstOrDefault(t => t.OrderId == id); ;
+
             if (jorOrder == null)
             {
                 return HttpNotFound();
@@ -517,12 +525,15 @@ namespace LabTestVerThree.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var jorOrderToUpdate = db.JorOrders.Find(id);
+
             if (TryUpdateModel(jorOrderToUpdate, "",
-               new string[] { "Code", "Name", "MinValue", "MaxValue", "Description" }))
+               new string[] { "DateAdd", "Num", "Value", "Description", "Pay" }))
             {
                 try
                 {
                     db.SaveChanges();
+
+                    AddJorAddResults(jorOrderToUpdate);
 
                     return RedirectToAction("Index");
                 }
