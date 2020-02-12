@@ -36,10 +36,20 @@
 
                 @if (@ViewBag.Client != null)
                 {
-                    @Html.TextBox("Client", ViewBag.Client.FullName as string)
+                    @*@Html.TextBox("ClientId", ViewBag.Client.FullName as string)*@
+
+                    @Html.EditorFor(model => model.Client.FullName, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            @Value = ViewBag.Client.FullName@*, style = "display:none"*@ }
+                    })
+
                 }
 
                 @Html.ActionLink("Выбрать", "ListClients", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
+
             </div>
         </div>
 
@@ -49,7 +59,15 @@
 
                 @if (@ViewBag.Good != null)
                 {
-                    @Html.TextBox("Good", ViewBag.Good.Name as string)
+                    @*@Html.TextBox("GoodId", ViewBag.Good.Name as string)*@
+
+                    @Html.EditorFor(model => model.Good.Name, new
+                    {
+                        htmlAttributes = new
+                        {
+                            @class = "form-control",
+                            @Value = ViewBag.Good.Name@*, style = "display:none"*@ }
+                    })
                 }
 
                 @Html.ActionLink("Выбрать", "ListGoods", null, null, new { id = "btnAddGood", @class = "btn btn-small btn-info" })

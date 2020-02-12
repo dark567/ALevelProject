@@ -78,15 +78,35 @@ namespace LabTestVerThree.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Code, Name, Description")]JorOrder jorOrder)
+        public ActionResult Create([Bind(Include = "DateAdd, Num, ClientId, GoodId, Description, Pay")]JorOrder jorOrder)
         {
+            //try
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.JorOrders.Add(jorOrder);
+            //        db.SaveChanges();
+            //        return RedirectToAction("Index");
+            //    }
+            //}
+            //catch (RetryLimitExceededException /* dex */)
+            //{
+            //    //Log the error (uncomment dex variable name and add a line here to write a log.
+            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            //}
+            //return View(jorOrder);
+
             try
             {
                 if (ModelState.IsValid)
                 {
                     db.JorOrders.Add(jorOrder);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return PartialView("Index", jorOrder);
                 }
             }
             catch (RetryLimitExceededException /* dex */)
@@ -144,40 +164,62 @@ namespace LabTestVerThree.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create_(Guid? id)
+        public ActionResult Create_([Bind(Include = "DateAdd, Num, ClientId, GoodId, Description, Pay")]JorOrder jorOrder)
         {
+            if (jorOrder.GoodId == null)
+            {
+                //jorOrder.Good = (DicGood)(Session["Good"]);
+                jorOrder.GoodId = ((DicGood)(Session["Good"])).GoodId;
+            }
+
+            if (jorOrder.ClientId == null)
+            {
+                jorOrder.ClientId = ((DicClient)(Session["Client"])).ClientId;
+            }
+
             try
             {
-                DicClient dicClient = db.DicClients.Find(id);
+                if (ModelState.IsValid)
+                {
+                    db.JorOrders.Add(jorOrder);
+                    db.SaveChanges();
+                    //return Json(new { success = true });
 
-                if (dicClient != null) {
-                    if (ModelState.IsValid)
+                    if (jorOrder.Pay == true)
                     {
-                        ViewBag.Client = dicClient;
+                        JorAddResult jorAddResult = new JorAddResult()
+                        {
+                            DateAdd = jorOrder.DateAdd,
+                            Num = jorOrder.Num,
+                            Barcode = "10000001",
+                            ClientId = jorOrder.ClientId,
+                            GoodId = jorOrder.GoodId,
+                            Description = jorOrder.Description
+                        };
+
+                        using (EFDBContext db = new EFDBContext())
+                        {
+                            db.JorAddResults.Add(jorAddResult);
+                            db.SaveChanges();
+                        }
+
                     }
+
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    DicGood dicGood = db.DicGoods.Find(id);
-                    if (ModelState.IsValid)
-                    {
-                        ViewBag.Good = dicGood;
-                    }
+                    return PartialView("Index", jorOrder);
                 }
-                //else
-                //{
-                //    return PartialView("ListClients_");
-                //}
-
-                
             }
             catch (RetryLimitExceededException /* dex */)
             {
                 //Log the error (uncomment dex variable name and add a line here to write a log.
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
-            //return View(client);
-            return RedirectToAction("Create_");
+            return View(jorOrder);
+
+
         }
 
         public ActionResult ListClients(string sortOrder, string currentFilter, string searchString, int? page)
@@ -257,6 +299,26 @@ namespace LabTestVerThree.Controllers
                 ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
             }
             return View(client);
+
+            //try
+            //{
+            //    if (ModelState.IsValid)
+            //    {
+            //        db.JorOrders.Add(jorOrder);
+            //        db.SaveChanges();
+            //        return Json(new { success = true });
+            //    }
+            //    else
+            //    {
+            //        return PartialView("Index", jorOrder);
+            //    }
+            //}
+            //catch (RetryLimitExceededException /* dex */)
+            //{
+            //    //Log the error (uncomment dex variable name and add a line here to write a log.
+            //    ModelState.AddModelError("", "Unable to save changes. Try again, and if the problem persists see your system administrator.");
+            //}
+            //return View(jorOrder);
         }
 
         public ActionResult ListGoods(string sortOrder, string currentFilter, string searchString, int? page)
