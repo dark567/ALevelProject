@@ -5,7 +5,7 @@
     <h3 id="myModalLabel">Отправка почты</h3>
 </div>
 
-@using (Html.BeginForm("SendEmail", "JorResultController", FormMethod.Post, new { @class = "modal-form" }))
+@using (Html.BeginForm("SendEmail", "JorResult", FormMethod.Post, new { @class = "modal-form" }))
 {
     <div class="modal-body" style="background-color:lightblue">
         @Html.ValidationSummary()

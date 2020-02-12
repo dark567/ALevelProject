@@ -16,7 +16,7 @@
 <body>
     <div>
         <h2>JorResults</h2>
-  
+
 
         @using (Html.BeginForm("Index", "JorResult", FormMethod.Get))
         {
@@ -55,35 +55,38 @@
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateAdd)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DateSent)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Num)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Client.FullName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Good.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    <td>
-                        @Html.CheckBox("isNewlyEnrolled", item.IsSent, new { @disabled = "disabled" })
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.ResultId }) |
-                        @*@Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |*@
-                        @Html.ActionLink("Details", "Details", new { id = item.ResultId }) 
-                        @*@Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" })*@
-                    </td>
-                </tr>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateAdd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateSent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Num)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Good.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.CheckBox("isNewlyEnrolled", item.IsSent, new { @disabled = "disabled" })
+            </td>
+            <td>
+
+                @Html.ActionLink("Edit", "Edit", new { id = item.ResultId }) |
+                @*@Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |*@
+                @Html.ActionLink("Details", "Details", new { id = item.ResultId })
+                @*@Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" })*@
+            </td>
+
+        </tr>
             }
 
         </table>

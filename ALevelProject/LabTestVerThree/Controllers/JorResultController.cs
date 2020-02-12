@@ -109,7 +109,10 @@ namespace LabTestVerThree.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+
             JorResult jorResult = db.JorResults.Find(id);
+
+            Session["Result"] = jorResult;
 
             DicClient client = db.DicClients.Find(jorResult.ClientId);
             DicGood good = db.DicGoods.Find(jorResult.GoodId);
@@ -201,15 +204,42 @@ namespace LabTestVerThree.Controllers
             return PartialView(jorResult);
         }
 
-        public ActionResult SendEmail()
+        public ActionResult SendEmail(Guid? id)
         {
-            return PartialView();
+            //if (id == null )
+            //{
+            //    JorResult jorResult = (JorResult)(Session["Result"]);
+            //}
+            JorResult jorResult = (JorResult)(Session["Result"]);
+
+            EmailModel emailModel = new EmailModel()
+            {
+                Subject = "Teat",
+                From = "admin@gmail.com",
+                To = jorResult.Client.Email,
+                Body = $"Ваши результаты:{jorResult.Value} {jorResult.Description}"
+            };
+
+            return PartialView(emailModel);
         }
 
         [HttpPost]
         public ActionResult SendEmail(EmailModel model)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    new EmailController().SendEmail(model).Deliver();
+
+                    return RedirectToAction("Success");
+                }
+                catch (Exception)
+                {
+                    return RedirectToAction("Error");
+                }
+            }
+            return View(model);
         }
 
         public ActionResult Success()
