@@ -7,3 +7,6 @@
 2020-02-13 00:25:29,025 [5] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController
 2020-02-13 00:29:46,314 [1] INFO  LabTestVerThree.MvcApplication [(null)] - Start MvcApplication
 2020-02-13 00:30:00,550 [9] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController
+2020-02-13 00:34:42,798 [1] INFO  LabTestVerThree.MvcApplication [(null)] - Start MvcApplication
+2020-02-13 00:37:12,837 [1] INFO  LabTestVerThree.MvcApplication [(null)] - Start MvcApplication
+2020-02-13 00:38:04,978 [10] INFO  LabTestVerThree.Controllers.HomeController [(null)] - Start HomeController

@@ -287,12 +287,12 @@
     <Content Include="Views\JorAddResult\Edit.cshtml" />
     <Content Include="Views\JorOrders\ListGoods_.cshtml" />
     <Content Include="Views\JorResult\SendEmail.cshtml" />
+    <Content Include="Views\Email\SendEmail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="EmailSave\" />
     <Folder Include="ErrorLog\" />
-    <Folder Include="Views\Email\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
