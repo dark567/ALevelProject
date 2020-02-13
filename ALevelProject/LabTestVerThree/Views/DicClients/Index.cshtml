@@ -12,27 +12,29 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>Справочник клиентов</title>
+
 </head>
 <body>
+    <div><span id="notification" style="color:red;font-size:15px;"></span></div>
     <div>
         <h3>Справочник клиентов</h3>
         <p>
             @*@Html.ActionLink("Create New", "Create")*@
 
-            @Html.ActionLink("CreateModalNew", "CreateM", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
+            @Html.ActionLink("Добавление нового клиента", "CreateM", null, null, new { id = "btnCreate", @class = "btn btn-small btn-info" })
         </p>
 
         <div id='dialogDiv' class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div id='dialogContent'></div>
-                    </div>
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div id='dialogContent'></div>
                 </div>
             </div>
+        </div>
 
-            <div id="modDialogDet" class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                <div id="dialogContentDet" class="modal-dialog"></div>
-            </div>
+        <div id="modDialogDet" class='modal fade' tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div id="dialogContentDet" class="modal-dialog"></div>
+        </div>
 
         @section Scripts {
             @Scripts.Render("~/bundles/jqueryval")
@@ -77,7 +79,7 @@
                     });
                 }
             </script>
- 
+
             <script type="text/javascript">
 
                 $(function () {
@@ -92,6 +94,25 @@
                     });
                 })
             </script>
+
+            <script src="~/Scripts/jquery.signalR-2.2.0.min.js"></script>
+            <!--Ссылка на автоматически сгенерированный скрипт хаба SignalR -->
+            <script src="~/signalr/hubs"></script>
+            <script type="text/javascript">
+                $(function () {
+
+                    var notificationhub = $.connection.notificationHub;
+
+                    notificationhub.client.displayMessage = function (message) {
+
+                        $('#notification').html(message);
+                    };
+
+                    $.connection.hub.start();
+
+                });
+            </script>
+
         }
 
         @using (Html.BeginForm("Index", "DicClients", FormMethod.Get))
@@ -105,13 +126,13 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Имя", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    SurName
+                    Фамилия
                 </th>
                 <th>
-                    @Html.ActionLink("BirthDate", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Дата Рождения", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
                     Пол
@@ -121,27 +142,27 @@
 
             @foreach (var item in Model)
             {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.BirthDate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender.Type)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
-                @Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ClientId }) |
-                @Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
-            </td>
-        </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Surname)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BirthDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Gender.Type)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ClientId }) |
+                        @*@Html.ActionLink("Edit", "EditModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |*@
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ClientId }) |*@
+                        @*@Html.ActionLink("Details", "DetailsModal", new { id = item.ClientId }, new { @class = "detailsModal" }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ClientId })
+                    </td>
+                </tr>
             }
 
         </table>

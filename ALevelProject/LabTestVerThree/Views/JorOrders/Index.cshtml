@@ -15,7 +15,7 @@
 </head>
 <body>
     <div>
-        <h2>JorOrder</h2>
+        <h2>Заказы</h2>
         <p>
             @*@Html.ActionLink("Create New", "Create")*@
             @Html.ActionLink("Добавить заказ", "Create_")
@@ -76,7 +76,7 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.OrderId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.OrderId }) |
+                @*@Html.ActionLink("Details", "Details", new { id = item.OrderId }) |*@
                 @Html.ActionLink("Delete", "Delete", new { id = item.OrderId })
             </td>
         </tr>

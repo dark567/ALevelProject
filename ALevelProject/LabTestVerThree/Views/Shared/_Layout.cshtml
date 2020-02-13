@@ -11,10 +11,6 @@
 <body>
     @Html.Action("TopNav", "Navigation")
 
-    @*@if (!User.IsInRole("admins") || !User.IsInRole("laborants") || !User.IsInRole("managers"))
-    {
-        @Html.Action("TopNav", "Navigation")
-    }*@
     <div class="container body-content">
         @RenderBody()
         <hr />

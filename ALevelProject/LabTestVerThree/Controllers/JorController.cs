@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class JorController : Controller
     {
         // создаем контекст данных

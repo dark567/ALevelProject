@@ -15,14 +15,14 @@
 </head>
 <body>
     <div>
-        <h3>Справочник услуг</h3>
         <p>
-            @Html.ActionLink("Create New", "Create")
+        <p>
+            @Html.ActionLink("Создать новую услугу", "Create")
         </p>
         @using (Html.BeginForm("Index", "DicGoods", FormMethod.Get))
         {
             <p>
-                Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+                Find by Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
                 <input type="submit" value="Search" />
             </p>
         }
@@ -30,23 +30,22 @@
         <table class="table">
             <tr>
                 <th>
-                    @Html.ActionLink("Code", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Код", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    @Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+                    @Html.ActionLink("Имя", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
                 </th>
                 <th>
-                    MinValue
+                    МинЗначение
                 </th>
                 <th>
-                    MaxValue
+                    МаксимальноеЗначение
                 </th>
                 <th>
-                    Description
+                    Описание
                 </th>
                 <th></th>
             </tr>
-
 
             @foreach (var item in Model)
             {
@@ -68,7 +67,6 @@
                     </td>
                     <td>
                         @Html.ActionLink("Edit", "Edit", new { id = item.GoodId }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.GoodId }) |
                         @Html.ActionLink("Delete", "Delete", new { id = item.GoodId })
                     </td>
                 </tr>

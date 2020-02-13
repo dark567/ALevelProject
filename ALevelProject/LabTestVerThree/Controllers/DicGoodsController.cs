@@ -1,5 +1,6 @@
 ﻿using DataLayer;
 using DataLayer.Entityes;
+using log4net;
 using PagedList;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,10 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class DicGoodsController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
         // создаем контекст данных
         EFDBContext db = new EFDBContext();
 
@@ -180,7 +183,17 @@ namespace LabTestVerThree.Controllers
             {
                 DicGood dicGood = db.DicGoods.Find(id);
                 db.DicGoods.Remove(dicGood);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                    Log.Info($"Добавлен новый клиент.{dicGood.Code} {dicGood.Name}");
+                }
+                catch (DbUpdateException ex)
+                {
+                    //SendMessage("Ошибка удаления. Клиент уже используется в заказе.");
+                    Log.Error($"Error. Order {dicGood.Code}-{dicGood.Name}-{dicGood.GoodId} already using in orders. {ex.Message}");
+                    //throw;
+                }
             }
             catch (RetryLimitExceededException/* dex */)
             {

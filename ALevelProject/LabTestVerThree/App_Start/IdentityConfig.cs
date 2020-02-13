@@ -21,6 +21,8 @@ namespace LabTestVerThree.App_Start
             });
 
             app.CreatePerOwinContext<AppRoleManager>(AppRoleManager.Create); //add RoleManager
+
+            app.MapSignalR(); //Push
         }
     }
 }

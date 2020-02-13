@@ -8,11 +8,16 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Web.Mvc;
+using LabTestVerThree.Models;
+using LabTestVerThree.Hubs;
+using log4net;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class DicClientsController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
         // создаем контекст данных
         EFDBContext db = new EFDBContext();
 
@@ -64,13 +69,6 @@ namespace LabTestVerThree.Controllers
             int pageSize = 5; /*!!!!*/
             int pageNumber = (page ?? 1);
             return View(clients.ToPagedList(pageNumber, pageSize));
-
-            //// получаем из бд все объекты Book
-            //IEnumerable<DicClient> dicClients = db.DicClient;
-            //// передаем все объекты в динамическое свойство Books в ViewBag
-            //ViewBag.DicClients = dicClients;
-            //// возвращаем представление
-            //return View();
         }
 
         // GET: DicClient/Create
@@ -286,13 +284,25 @@ namespace LabTestVerThree.Controllers
         // POST: DicClient/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(Guid id)
+        public ActionResult Delete(Guid? id)
         {
             try
             {
                 DicClient dicClient = db.DicClients.Find(id);
                 db.DicClients.Remove(dicClient);
-                db.SaveChanges();
+                try
+                {
+                    db.SaveChanges();
+                    //SendMessage("Добавлен новый клиент");
+                    Log.Info($"Добавлен новый клиент.{dicClient.FullName}");
+                }
+                catch (DbUpdateException ex)
+                {
+                    //SendMessage("Ошибка удаления. Клиент уже используется в заказе.");
+                    Log.Error($"Error. Client {dicClient.FullName}-{dicClient.ClientId} already using in orders. {ex.Message}");
+                    //throw;
+                }
+               
             }
             catch (RetryLimitExceededException/* dex */)
             {
@@ -300,6 +310,15 @@ namespace LabTestVerThree.Controllers
                 return RedirectToAction("Delete", new { id = id, saveChangesError = true });
             }
             return RedirectToAction("Index");
+        }
+
+        private void SendMessage(string message)
+        {
+            // Получаем контекст хаба
+            var context =
+                Microsoft.AspNet.SignalR.GlobalHost.ConnectionManager.GetHubContext<NotificationHub>();
+            // отправляем сообщение
+            context.Clients.All.displayMessage(message);
         }
 
         protected override void Dispose(bool disposing)

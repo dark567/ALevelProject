@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
+
     public class JorOrdersController : Controller
     {
 
@@ -39,7 +40,7 @@ namespace LabTestVerThree.Controllers
             //IEnumerable<JorOrder> good = from s in db.JorOrders
             //                             select s;
 
-            IEnumerable<JorOrder> orders = db.JorOrders.Include(p => p.Client).Include(d =>d.Good);
+            IEnumerable<JorOrder> orders = db.JorOrders.Include(p => p.Client).Include(d => d.Good);
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -120,7 +121,7 @@ namespace LabTestVerThree.Controllers
         public ActionResult Create_(Guid? id, bool? saveChangesError = false)
         {
             //ViewBag.Client = null;
-            if ((id != null)&&(db.DicClients.Find(id)!=null))
+            if ((id != null) && (db.DicClients.Find(id) != null))
             {
                 DicClient dicClient = db.DicClients.Find(id);
 
@@ -140,13 +141,13 @@ namespace LabTestVerThree.Controllers
 
             if ((id != null) && (db.DicGoods.Find(id) != null))
             {
-                DicGood dicGood= db.DicGoods.Find(id);
+                DicGood dicGood = db.DicGoods.Find(id);
 
                 if (ModelState.IsValid)
                 {
                     ViewBag.Good = dicGood;
                     Session["Good"] = dicGood;
-                    
+
                     // чтение из сессии
                     ViewBag.Client = (DicClient)(Session["Client"]);
                 }
@@ -272,12 +273,6 @@ namespace LabTestVerThree.Controllers
             int pageNumber = (page ?? 1);
             //return View(clients.ToPagedList(pageNumber, pageSize));
 
-            //// получаем из бд все объекты Book
-            //IEnumerable<DicClient> dicClients = db.DicClient;
-            //// передаем все объекты в динамическое свойство Books в ViewBag
-            //ViewBag.DicClients = dicClients;
-            //// возвращаем представление
-            //return View();
             return PartialView("ListClients_", clients.ToPagedList(pageNumber, pageSize));
         }
 
@@ -345,7 +340,7 @@ namespace LabTestVerThree.Controllers
             ViewBag.CurrentFilter = searchString;
 
             IEnumerable<DicGood> goods = from s in db.DicGoods
-                                             select s;
+                                         select s;
             if (!String.IsNullOrEmpty(searchString))
             {
                 goods = goods.Where(s => s.Name.ToLower().Contains(searchString.ToLower())
@@ -368,12 +363,6 @@ namespace LabTestVerThree.Controllers
             int pageNumber = (page ?? 1);
             //return View(clients.ToPagedList(pageNumber, pageSize));
 
-            //// получаем из бд все объекты Book
-            //IEnumerable<DicClient> dicClients = db.DicClient;
-            //// передаем все объекты в динамическое свойство Books в ViewBag
-            //ViewBag.DicClients = dicClients;
-            //// возвращаем представление
-            //return View();
             return PartialView("ListGoods_", goods.ToPagedList(pageNumber, pageSize));
         }
 
@@ -504,7 +493,7 @@ namespace LabTestVerThree.Controllers
             }
             //JorOrder jorOrder = db.JorOrders.Find(id);
 
-            JorOrder jorOrder = db.JorOrders.Include(p => p.Client).Include(d => d.Good).FirstOrDefault(t => t.OrderId == id); ;
+            JorOrder jorOrder = db.JorOrders.Include(p => p.Client).Include(d => d.Good).FirstOrDefault(t => t.OrderId == id);
 
             if (jorOrder == null)
             {
@@ -557,7 +546,7 @@ namespace LabTestVerThree.Controllers
             {
                 ViewBag.ErrorMessage = "Delete failed. Try again, and if the problem persists see your system administrator.";
             }
-            JorOrder jorOrder = db.JorOrders.Find(id);
+            JorOrder jorOrder = db.JorOrders.Include(p => p.Client).Include(d => d.Good).FirstOrDefault(t => t.OrderId == id);
             if (jorOrder == null)
             {
                 return HttpNotFound();

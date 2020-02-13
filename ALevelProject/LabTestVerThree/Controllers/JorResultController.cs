@@ -13,6 +13,7 @@ using LabTestVerThree.Models;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class JorResultController : Controller
     {
         // создаем контекст данных

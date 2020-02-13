@@ -5,6 +5,7 @@ namespace LabTestVerThree.Controllers
 {
     public class NavigationController : Controller
     {
+
         // GET: Navbar
         public ActionResult TopNav()
         {
@@ -12,7 +13,7 @@ namespace LabTestVerThree.Controllers
 
             if (User.IsInRole("admins"))
             {
-                var nav = new Navbar();
+                var nav = new NavbarAdmin();
                 return PartialView("_topNav", nav.NavbarTop());
             }
             if (User.IsInRole("managers"))

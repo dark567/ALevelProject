@@ -12,6 +12,7 @@ using System.Data.Entity.Infrastructure;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class JorAddResultController : Controller
     {
 

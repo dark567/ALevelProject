@@ -1,17 +1,24 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Наши Контакты";
 }
 <h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
 <address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
+    Харьков<br />
+    ул.Сумская №1<br />
+    <abbr title="Телефон"></abbr>
+    +38(0ХХ)ХХ-ХХХ-ХХ
 </address>
 
 <address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
+    <strong>Отдел продаж:</strong>   <a href="mailto:market@labtest.com">market@labtest.com</a><br />
+    <strong>Поддержка:</strong>   <a href="mailto:admin@labtest.com">admin@labtest.com</a><br />
 </address>
+
+<div class="text-left">
+    <img src="~/Content/img/Map.JPG" alt="Sample Image" width="500px" />
+</div>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

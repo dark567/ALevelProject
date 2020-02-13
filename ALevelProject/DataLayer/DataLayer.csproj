@@ -81,8 +81,14 @@
     <Compile Include="Entityes\JorAddResult.cs" />
     <Compile Include="Entityes\JorOrder.cs" />
     <Compile Include="Entityes\JorResult.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
+    <Compile Include="Interfaces\IUnitOfWork.cs" />
+    <Compile Include="LabContext.cs" />
     <Compile Include="LabDbInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\DicClientRepository.cs" />
+    <Compile Include="Repositories\DicGoodRepository.cs" />
+    <Compile Include="Repositories\EFUnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -4,11 +4,12 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private static readonly ILog Log = LogManager.GetLogger(typeof(HomeController));
 
-        [Authorize]
+
         [LogConnection]
         public ActionResult Index()
         {
@@ -16,14 +17,14 @@ namespace LabTestVerThree.Controllers
 
             return View();
         }
-        [Authorize]
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
-        [Authorize]
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
