@@ -14,7 +14,7 @@ namespace LabTestVerThree
 
         protected void Application_Start()
         {
-           // Database.SetInitializer(new LabDbInitializer());
+            Database.SetInitializer(new LabDbInitializer());
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -26,6 +26,11 @@ namespace LabTestVerThree
             Log.Info("Start MvcApplication");
         }
 
+        /// <summary>
+        /// for write to bd
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         protected void Application_End(Object sender, EventArgs e)
         {
             Log.Info("Stop MvcApplication");

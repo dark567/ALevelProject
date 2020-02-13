@@ -91,59 +91,61 @@ namespace DataLayer
             db.JorOrders.Add(jo12);
             db.SaveChanges();
 
-            JorAddResult jrAr1 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000001",Client = dс1, ClientId = dс1.ClientId, Good = dg1, GoodId = dg1.GoodId };
-            JorAddResult jrAr2 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000002", Client = dс2, ClientId = dс2.ClientId, Good = dg2, GoodId = dg2.GoodId };
-            JorAddResult jrAr3 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000003", Client = dс3, ClientId = dс3.ClientId, Good = dg3, GoodId = dg3.GoodId };
-            JorAddResult jrAr4 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000004", Client = dс4, ClientId = dс4.ClientId, Good = dg4, GoodId = dg4.GoodId };
-            JorAddResult jrAr5 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000005", Client = dс5, ClientId = dс5.ClientId, Good = dg5, GoodId = dg5.GoodId };
-            JorAddResult jrAr6 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000006", Client = dс6, ClientId = dс6.ClientId, Good = dg6, GoodId = dg6.GoodId };
-            JorAddResult jrAr7 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000007", Client = dс1, ClientId = dс1.ClientId, Good = dg7, GoodId = dg7.GoodId };
-            JorAddResult jrAr8 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000008", Client = dс2, ClientId = dс2.ClientId, Good = dg8, GoodId = dg8.GoodId };
-            JorAddResult jrAr9 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000009", Client = dс3, ClientId = dс3.ClientId, Good = dg1, GoodId = dg1.GoodId };
-            JorAddResult jrAr10 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000010", Client = dс4, ClientId = dс4.ClientId, Good = dg2, GoodId = dg2.GoodId };
-            JorAddResult jrAr11 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000011", Client = dс5, ClientId = dс5.ClientId, Good = dg3, GoodId = dg3.GoodId };
-            JorAddResult jrAr12 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000012", Client = dс6, ClientId = dс6.ClientId, Good = dg4, GoodId = dg4.GoodId };
+            #region test
 
-            db.JorAddResults.Add(jrAr1);
-            db.JorAddResults.Add(jrAr2);
-            db.JorAddResults.Add(jrAr3);
-            db.JorAddResults.Add(jrAr4);
-            db.JorAddResults.Add(jrAr5);
-            db.JorAddResults.Add(jrAr6);
-            db.JorAddResults.Add(jrAr7);
-            db.JorAddResults.Add(jrAr8);
-            db.JorAddResults.Add(jrAr9);
-            db.JorAddResults.Add(jrAr10);
-            db.JorAddResults.Add(jrAr11);
-            db.JorAddResults.Add(jrAr12);
-            db.SaveChanges();
+            //JorAddResult jrAr1 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000001",Client = dс1, ClientId = dс1.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            //JorAddResult jrAr2 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000002", Client = dс2, ClientId = dс2.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            //JorAddResult jrAr3 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000003", Client = dс3, ClientId = dс3.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            //JorAddResult jrAr4 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000004", Client = dс4, ClientId = dс4.ClientId, Good = dg4, GoodId = dg4.GoodId };
+            //JorAddResult jrAr5 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000005", Client = dс5, ClientId = dс5.ClientId, Good = dg5, GoodId = dg5.GoodId };
+            //JorAddResult jrAr6 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000006", Client = dс6, ClientId = dс6.ClientId, Good = dg6, GoodId = dg6.GoodId };
+            //JorAddResult jrAr7 = new JorAddResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001", Barcode = "00000007", Client = dс1, ClientId = dс1.ClientId, Good = dg7, GoodId = dg7.GoodId };
+            //JorAddResult jrAr8 = new JorAddResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002", Barcode = "00000008", Client = dс2, ClientId = dс2.ClientId, Good = dg8, GoodId = dg8.GoodId };
+            //JorAddResult jrAr9 = new JorAddResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003", Barcode = "00000009", Client = dс3, ClientId = dс3.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            //JorAddResult jrAr10 = new JorAddResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004", Barcode = "00000010", Client = dс4, ClientId = dс4.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            //JorAddResult jrAr11 = new JorAddResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005", Barcode = "00000011", Client = dс5, ClientId = dс5.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            //JorAddResult jrAr12 = new JorAddResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006", Barcode = "00000012", Client = dс6, ClientId = dс6.ClientId, Good = dg4, GoodId = dg4.GoodId };
 
-            JorResult jrR1 = new JorResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001",  Client = dс1, ClientId = dс1.ClientId, Good = dg1, GoodId = dg1.GoodId };
-            JorResult jrR2 = new JorResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002",  Client = dс2, ClientId = dс2.ClientId, Good = dg2, GoodId = dg2.GoodId };
-            JorResult jrR3 = new JorResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003",  Client = dс3, ClientId = dс3.ClientId, Good = dg3, GoodId = dg3.GoodId };
-            JorResult jrR4 = new JorResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004",  Client = dс4, ClientId = dс4.ClientId, Good = dg4, GoodId = dg4.GoodId };
-            JorResult jrR5 = new JorResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005",  Client = dс5, ClientId = dс5.ClientId, Good = dg5, GoodId = dg5.GoodId };
-            JorResult jrR6 = new JorResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006",  Client = dс6, ClientId = dс6.ClientId, Good = dg6, GoodId = dg6.GoodId };
-            JorResult jrR7 = new JorResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001",  Client = dс1, ClientId = dс1.ClientId, Good = dg7, GoodId = dg7.GoodId };
-            JorResult jrR8 = new JorResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002",  Client = dс2, ClientId = dс2.ClientId, Good = dg8, GoodId = dg8.GoodId };
-            JorResult jrR9 = new JorResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003",  Client = dс3, ClientId = dс3.ClientId, Good = dg1, GoodId = dg1.GoodId };
-            JorResult jrR10 = new JorResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004",  Client = dс4, ClientId = dс4.ClientId, Good = dg2, GoodId = dg2.GoodId };
-            JorResult jrR11 = new JorResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005",  Client = dс5, ClientId = dс5.ClientId, Good = dg3, GoodId = dg3.GoodId };
-            JorResult jrR12 = new JorResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006",  Client = dс6, ClientId = dс6.ClientId, Good = dg4, GoodId = dg4.GoodId };
+            //db.JorAddResults.Add(jrAr1);
+            //db.JorAddResults.Add(jrAr2);
+            //db.JorAddResults.Add(jrAr3);
+            //db.JorAddResults.Add(jrAr4);
+            //db.JorAddResults.Add(jrAr5);
+            //db.JorAddResults.Add(jrAr6);
+            //db.JorAddResults.Add(jrAr7);
+            //db.JorAddResults.Add(jrAr8);
+            //db.JorAddResults.Add(jrAr9);
+            //db.JorAddResults.Add(jrAr10);
+            //db.JorAddResults.Add(jrAr11);
+            //db.JorAddResults.Add(jrAr12);
+            //db.SaveChanges();
 
-            db.JorResults.Add(jrR1);
-            db.JorResults.Add(jrR2);
-            db.JorResults.Add(jrR3);
-            db.JorResults.Add(jrR4);
-            db.JorResults.Add(jrR5);
-            db.JorResults.Add(jrR6);
-            db.JorResults.Add(jrR7);
-            db.JorResults.Add(jrR8);
-            db.JorResults.Add(jrR9);
-            db.JorResults.Add(jrR10);
-            db.JorResults.Add(jrR11);
-            db.JorResults.Add(jrR12);
-            db.SaveChanges();
+            //JorResult jrR1 = new JorResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001",  Client = dс1, ClientId = dс1.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            //JorResult jrR2 = new JorResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002",  Client = dс2, ClientId = dс2.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            //JorResult jrR3 = new JorResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003",  Client = dс3, ClientId = dс3.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            //JorResult jrR4 = new JorResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004",  Client = dс4, ClientId = dс4.ClientId, Good = dg4, GoodId = dg4.GoodId };
+            //JorResult jrR5 = new JorResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005",  Client = dс5, ClientId = dс5.ClientId, Good = dg5, GoodId = dg5.GoodId };
+            //JorResult jrR6 = new JorResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006",  Client = dс6, ClientId = dс6.ClientId, Good = dg6, GoodId = dg6.GoodId };
+            //JorResult jrR7 = new JorResult { DateAdd = DateTime.Parse("2012-01-11"), Num = "0001",  Client = dс1, ClientId = dс1.ClientId, Good = dg7, GoodId = dg7.GoodId };
+            //JorResult jrR8 = new JorResult { DateAdd = DateTime.Parse("2020-02-20"), Num = "0002",  Client = dс2, ClientId = dс2.ClientId, Good = dg8, GoodId = dg8.GoodId };
+            //JorResult jrR9 = new JorResult { DateAdd = DateTime.Parse("2019-04-18"), Num = "0003",  Client = dс3, ClientId = dс3.ClientId, Good = dg1, GoodId = dg1.GoodId };
+            //JorResult jrR10 = new JorResult { DateAdd = DateTime.Parse("2018-07-13"), Num = "0004",  Client = dс4, ClientId = dс4.ClientId, Good = dg2, GoodId = dg2.GoodId };
+            //JorResult jrR11 = new JorResult { DateAdd = DateTime.Parse("2019-01-01"), Num = "0005",  Client = dс5, ClientId = dс5.ClientId, Good = dg3, GoodId = dg3.GoodId };
+            //JorResult jrR12 = new JorResult { DateAdd = DateTime.Parse("2015-09-15"), Num = "0006",  Client = dс6, ClientId = dс6.ClientId, Good = dg4, GoodId = dg4.GoodId };
+
+            //db.JorResults.Add(jrR1);
+            //db.JorResults.Add(jrR2);
+            //db.JorResults.Add(jrR3);
+            //db.JorResults.Add(jrR4);
+            //db.JorResults.Add(jrR5);
+            //db.JorResults.Add(jrR6);
+            //db.JorResults.Add(jrR7);
+            //db.JorResults.Add(jrR8);
+            //db.JorResults.Add(jrR9);
+            //db.JorResults.Add(jrR10);
+            //db.JorResults.Add(jrR11);
+            //db.JorResults.Add(jrR12);
+            //db.SaveChanges();
 
             //base.Seed(db);
 
@@ -191,7 +193,7 @@ namespace DataLayer
             //};
             //enrollments.ForEach(s => context.Enrollments.Add(s));
             //context.SaveChanges();
-
+            #endregion
         }
     }
 }
