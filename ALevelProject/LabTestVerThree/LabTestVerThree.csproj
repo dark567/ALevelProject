@@ -204,6 +204,7 @@
     <Compile Include="Models\CreateModel.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\EventsDetails.cs" />
+    <Compile Include="Models\ClientViewModel.cs" />
     <Compile Include="Models\UserViewModels.cs" />
     <Compile Include="NavbaR\NavbarAdmin.cs" />
     <Compile Include="NavbaR\NavbarItem.cs" />

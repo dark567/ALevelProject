@@ -51,6 +51,7 @@
     <Compile Include="DataManager.cs" />
     <Compile Include="DTO\DicClientsDTO.cs" />
     <Compile Include="DTO\DicGoodsDTO.cs" />
+    <Compile Include="Infrastructure\ServiceModule.cs" />
     <Compile Include="Interfaces\IGoodService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\GoodService.cs" />
