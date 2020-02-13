@@ -11,6 +11,7 @@ using System.Web.Mvc;
 
 namespace LabTestVerThree.Controllers
 {
+    [Authorize]
 
     public class JorOrdersController : Controller
     {
